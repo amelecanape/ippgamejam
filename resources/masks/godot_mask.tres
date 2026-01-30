@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MaskData" format=3 uid="uid://cuagpw3kso7m2"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://assets/icon.svg" id="1_go2xn"]
+[ext_resource type="Script" uid="uid://brtwthi37epd5" path="res://scripts/masks/mask_data.gd" id="1_gvaor"]
+
+[resource]
+script = ExtResource("1_gvaor")
+mask_sprite = ExtResource("1_go2xn")
+metadata/_custom_type_script = "uid://brtwthi37epd5"

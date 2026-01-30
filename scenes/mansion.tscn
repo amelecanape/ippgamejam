@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bi7okprx54aby"]
+
+[ext_resource type="PackedScene" uid="uid://d0yro7c43kteh" path="res://scenes/wall.tscn" id="1_t0213"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3mwam"]
+vertices = PackedVector2Array(711.1719, 519.7031, 44.03125, 500.28125, 45.960938, -110.046875, 721.8203, -113.9375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(34, 510, 36, -120, 732, -124, 721, 530)])
+
+[node name="Mansion" type="Node2D" unique_id=445564108]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=108994526]
+position = Vector2(72, 163)
+navigation_polygon = SubResource("NavigationPolygon_3mwam")
+
+[node name="Background" type="Node2D" parent="." unique_id=1240378532]
+
+[node name="Walls" type="Node2D" parent="." unique_id=489031958]
+
+[node name="Wall" parent="Walls" unique_id=1677285430 instance=ExtResource("1_t0213")]
+position = Vector2(271, 543)
+
+[node name="CollisionShape2D" parent="Walls/Wall" index="0" unique_id=1045313149]
+position = Vector2(184.5, -0.5)
+
+[node name="ColorRect" parent="Walls/Wall" index="1" unique_id=1887391830]
+offset_right = 380.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall3" parent="Walls" unique_id=910430425 instance=ExtResource("1_t0213")]
+position = Vector2(271, 131)
+
+[node name="CollisionShape2D" parent="Walls/Wall3" index="0" unique_id=1045313149]
+position = Vector2(184.5, -0.5)
+
+[node name="ColorRect" parent="Walls/Wall3" index="1" unique_id=1887391830]
+offset_right = 380.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall2" parent="Walls" unique_id=1447334967 instance=ExtResource("1_t0213")]
+position = Vector2(270, 523)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" parent="Walls/Wall2" index="0" unique_id=1045313149]
+position = Vector2(184.5, -0.5)
+
+[node name="ColorRect" parent="Walls/Wall2" index="1" unique_id=1887391830]
+offset_right = 380.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall4" parent="Walls" unique_id=1695819361 instance=ExtResource("1_t0213")]
+position = Vector2(642, 521)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" parent="Walls/Wall4" index="0" unique_id=1045313149]
+position = Vector2(102.49994, -0.5)
+
+[node name="ColorRect" parent="Walls/Wall4" index="1" unique_id=1887391830]
+offset_right = 380.0
+scale = Vector2(0.56, 1)
+metadata/_edit_use_anchors_ = true
+
+[editable path="Walls/Wall"]
+[editable path="Walls/Wall3"]
+[editable path="Walls/Wall2"]
+[editable path="Walls/Wall4"]

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="PackedScene" uid="uid://fe04lx08pprm" path="res://scenes/player_character.tscn" id="2_0wfyh"]
+[ext_resource type="Resource" uid="uid://cuagpw3kso7m2" path="res://resources/masks/godot_mask.tres" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bi7okprx54aby" path="res://scenes/mansion.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://p4t01rmimlig" path="res://scenes/npc_character.tscn" id="3_sugp2"]
+
+[node name="Main" type="Node2D" unique_id=2138465005]
+
+[node name="NPCCharacter" parent="." unique_id=1377067066 instance=ExtResource("3_sugp2")]
+position = Vector2(153, 102)
+DEBUG = true
+movement_speed = 250.0
+mask = ExtResource("2_jyhfs")
+
+[node name="PlayerCharacter" parent="." unique_id=296287983 instance=ExtResource("2_0wfyh")]
+position = Vector2(95, 42)
+mask = ExtResource("2_jyhfs")
+
+[node name="Mansion" parent="." unique_id=445564108 instance=ExtResource("3_jyhfs")]
+position = Vector2(-255, -117)

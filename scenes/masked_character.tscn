@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://t8mmamu4wuxp"]
+
+[ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scenes/masked_character.gd" id="1_ddrle"]
+[ext_resource type="Texture2D" uid="uid://c6rkhgw48fjpw" path="res://assets/spy.png" id="1_l6his"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://assets/icon.svg" id="2_rf373"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_alppu"]
+radius = 27.0
+height = 144.0
+
+[node name="MaskedCharacter" type="CharacterBody2D" unique_id=296287983]
+motion_mode = 1
+script = ExtResource("1_ddrle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843683943]
+shape = SubResource("CapsuleShape2D_alppu")
+
+[node name="CharacterSprite" type="Sprite2D" parent="." unique_id=1470258134]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(-2, -9)
+scale = Vector2(4.133789, 3.7122245)
+texture = ExtResource("1_l6his")
+
+[node name="MaskSprite" type="Sprite2D" parent="CharacterSprite" unique_id=1337100490]
+unique_name_in_owner = true
+position = Vector2(2.0277226, -6.77398)
+scale = Vector2(0.056435585, 0.05898568)
+texture = ExtResource("2_rf373")

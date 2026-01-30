@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://fe04lx08pprm"]
+
+[ext_resource type="PackedScene" uid="uid://t8mmamu4wuxp" path="res://scenes/masked_character.tscn" id="1_56udc"]
+[ext_resource type="Script" uid="uid://k72ra4rqbjke" path="res://scripts/player_control.gd" id="2_6r27q"]
+
+[node name="PlayerCharacter" unique_id=296287983 instance=ExtResource("1_56udc")]
+script = ExtResource("2_6r27q")
