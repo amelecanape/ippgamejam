@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 			set_movement_target(NavigationServer2D.region_get_random_point(navigation_region.get_rid(), 1, false))
 			waiting_for_next_target = false
 		else:
-			find_new_target_delay_cnt = find_new_target_delay_cnt - delta if find_new_target_delay_cnt > 0 else 0
+			find_new_target_delay_cnt = find_new_target_delay_cnt - delta\
+										 if find_new_target_delay_cnt > 0 else 0.0
 	super._process(delta)
 
 func _on_target_reached() -> void:

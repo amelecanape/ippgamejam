@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 			mask.sprite.flip_h = mov_input.x < 0
 		mask_slot.position.x = mask_base_position.x * \
 								( -1 if mov_input.x < 0 else 1)
-								
+		
 	if not mov_input.is_zero_approx():
 		character_sprite.play("walk")
 	else:

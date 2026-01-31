@@ -13,6 +13,7 @@
 vertices = PackedVector2Array(704, 288, 704, 160, 960, 160, 960, 480, 704, 480, 704, 384, 448, 288, 448, 384, 448, 480, 160, 480, 160, 160, 448, 160)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 3, 5), PackedInt32Array(6, 0, 5, 7), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(6, 7, 10), PackedInt32Array(11, 6, 10)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(69, 72, 63, 575, 1056, 571, 1052, 66)])
+parsed_geometry_type = 1
 parsed_collision_mask = 4278190081
 agent_radius = 32.0
 

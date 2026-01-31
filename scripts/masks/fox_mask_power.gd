@@ -8,7 +8,8 @@ func _process(delta: float) -> void:
 	if invisible_counter > 0:
 		mask.masked_character.character_sprite.visible = false
 		
-	invisible_counter = invisible_counter - delta if invisible_counter > 0 else  0
+	invisible_counter = invisible_counter - delta \
+					 if invisible_counter > 0 else  0.0
 
 func execute_ability() -> void:
 	invisible_counter = invisibility_duration
