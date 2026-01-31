@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://vmw5c4y8my8f"]
+
+[ext_resource type="PackedScene" uid="uid://32c6gd8jll44" path="res://scenes/mask/mask.tscn" id="1_swslt"]
+[ext_resource type="Texture2D" uid="uid://cglnkumjqj12i" path="res://assets/masks/masks.png" id="2_m6ysm"]
+[ext_resource type="Script" uid="uid://ciolq5k4mhpdt" path="res://scripts/masks/fox_mask_power.gd" id="2_s123h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g24lm"]
+atlas = ExtResource("2_m6ysm")
+region = Rect2(23, 1, 23, 13)
+
+[node name="DeerMask" unique_id=1533623259 instance=ExtResource("1_swslt")]
+
+[node name="Sprite" parent="." index="0" unique_id=1359893921]
+position = Vector2(-1, -1)
+texture = SubResource("AtlasTexture_g24lm")
+
+[node name="FoxMask" type="Node" parent="." index="1" unique_id=705772458]
+script = ExtResource("2_s123h")
+metadata/_custom_type_script = "uid://ciolq5k4mhpdt"

@@ -13,7 +13,7 @@ config_version=5
 config/name="Masked Soiree"
 run/main_scene="uid://155xx7s6y6ta"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="uid://c6rkhgw48fjpw"
+config/icon="uid://ydjpdltuplao"
 
 [autoload]
 

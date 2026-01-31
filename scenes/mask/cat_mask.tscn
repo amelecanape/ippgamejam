@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c078x6obfe1uv"]
+
+[ext_resource type="PackedScene" uid="uid://32c6gd8jll44" path="res://scenes/mask/mask.tscn" id="1_id37v"]
+[ext_resource type="Texture2D" uid="uid://cglnkumjqj12i" path="res://assets/masks/masks.png" id="2_tw0s6"]
+[ext_resource type="Script" uid="uid://ciolq5k4mhpdt" path="res://scripts/masks/fox_mask_power.gd" id="2_vv5te"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qua2o"]
+atlas = ExtResource("2_tw0s6")
+region = Rect2(99, 6, 12, 9)
+
+[node name="CatMask" unique_id=1533623259 instance=ExtResource("1_id37v")]
+
+[node name="Sprite" parent="." index="0" unique_id=1359893921]
+position = Vector2(1, 2)
+texture = SubResource("AtlasTexture_qua2o")
+
+[node name="FoxMask" type="Node" parent="." index="1" unique_id=705772458]
+script = ExtResource("2_vv5te")
+metadata/_custom_type_script = "uid://ciolq5k4mhpdt"

@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://32c6gd8jll44"]
 
 [ext_resource type="Script" uid="uid://bvruawlv8r7xv" path="res://scripts/masks/mask.gd" id="1_61b51"]
-[ext_resource type="Texture2D" uid="uid://ydjpdltuplao" path="res://assets/masks/fox_mask.png" id="1_in0c2"]
+[ext_resource type="Texture2D" uid="uid://cglnkumjqj12i" path="res://assets/masks/masks.png" id="2_61b51"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pm64"]
+atlas = ExtResource("2_61b51")
+region = Rect2(167, 4, 10, 11)
 
 [node name="Mask" type="Node2D" unique_id=1533623259]
 script = ExtResource("1_61b51")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1359893921]
 unique_name_in_owner = true
-texture = ExtResource("1_in0c2")
+texture = SubResource("AtlasTexture_0pm64")
