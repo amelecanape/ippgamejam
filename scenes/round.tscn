@@ -9,8 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://cyna8h07wstaf" path="res://scenes/mask/fox_mask.tscn" id="4_lbhrr"]
 [ext_resource type="SpriteFrames" uid="uid://dlb6at1me6y6i" path="res://resources/sprite_frames/red_dress.tres" id="5_0tnpc"]
 [ext_resource type="SpriteFrames" uid="uid://duvrnheasiag2" path="res://resources/sprite_frames/black_suit.tres" id="6_vtaks"]
+[ext_resource type="PackedScene" uid="uid://c078x6obfe1uv" path="res://scenes/mask/cat_mask.tscn" id="7_hnppa"]
+[ext_resource type="PackedScene" uid="uid://csnd72up75dp3" path="res://scenes/mask/clown_mask.tscn" id="8_41cje"]
 [ext_resource type="PackedScene" uid="uid://fe04lx08pprm" path="res://scenes/player_character.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://vmw5c4y8my8f" path="res://scenes/mask/deer_mask.tscn" id="9_h7eg2"]
+[ext_resource type="PackedScene" uid="uid://dtr27uoj7x05g" path="res://scenes/mask/owl_mask.tscn" id="11_ejohc"]
 [ext_resource type="Shader" uid="uid://c2vdhk2roar45" path="res://resources/shaders/spotlight.gdshader" id="11_ojwvf"]
+[ext_resource type="PackedScene" uid="uid://hdrftrspe301" path="res://scenes/mask/rabbit_mask.tscn" id="12_64kk8"]
+[ext_resource type="PackedScene" uid="uid://ckn8trj0hewsk" path="res://scenes/mask/troll_mask.tscn" id="13_o6psv"]
+[ext_resource type="PackedScene" uid="uid://cl2e22x15c8lq" path="res://scenes/mask/wolf_mask.tscn" id="14_p7exr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lnu2h"]
 vertices = PackedVector2Array(684, 268, 684, 140, 980, 140, 980, 500, 684, 500, 684, 404, 468, 268, 468, 404, 140, 140, 468, 500, 140, 500, 468, 140)
@@ -70,7 +77,7 @@ shader_parameter/radius = 0.10000000475
 script = ExtResource("1_vtaks")
 player_scene = ExtResource("9_0tnpc")
 player_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("5_0tnpc"), ExtResource("4_gee14"), ExtResource("3_u5sy4")])
-masks_scenes = Array[PackedScene]([ExtResource("4_lbhrr")])
+masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=142268143]
 unique_name_in_owner = true
@@ -90,7 +97,7 @@ nav_region = NodePath("../../NavigationRegion2D")
 navigation_layer = 1
 npc_scene = ExtResource("3_lnu2h")
 npc_sprite_frames = Array[SpriteFrames]([ExtResource("3_u5sy4"), ExtResource("4_gee14"), ExtResource("5_0tnpc"), ExtResource("6_vtaks")])
-masks_scenes = Array[PackedScene]([ExtResource("4_lbhrr")])
+masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 metadata/_custom_type_script = "uid://dkdoc80naeco4"
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1036752382]

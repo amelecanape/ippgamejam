@@ -2,8 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://32c6gd8jll44" path="res://scenes/mask/mask.tscn" id="1_jinfx"]
 [ext_resource type="Script" uid="uid://ciolq5k4mhpdt" path="res://scripts/masks/fox_mask_power.gd" id="2_jlliv"]
+[ext_resource type="Texture2D" uid="uid://cglnkumjqj12i" path="res://assets/masks/masks.png" id="2_kmr8t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyl6i"]
+atlas = ExtResource("2_kmr8t")
+region = Rect2(6, 5, 12, 9)
 
 [node name="FoxMask" unique_id=1533623259 instance=ExtResource("1_jinfx")]
+
+[node name="Sprite" parent="." index="0" unique_id=1359893921]
+texture = SubResource("AtlasTexture_eyl6i")
 
 [node name="FoxMask" type="Node" parent="." index="1" unique_id=705772458]
 script = ExtResource("2_jlliv")
