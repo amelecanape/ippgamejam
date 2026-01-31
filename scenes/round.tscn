@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://beo8w7gbcvrjf" path="res://assets/mansion/tileset.png" id="1_b0ldg"]
 [ext_resource type="Script" uid="uid://iog776uom8nl" path="res://scripts/game.gd" id="1_vtaks"]
-[ext_resource type="Script" uid="uid://dkdoc80naeco4" path="res://scripts/npc_spawner.gd" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://p4t01rmimlig" path="res://scenes/npc_character.tscn" id="3_lnu2h"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/mob_boss.tres" id="3_u5sy4"]
 [ext_resource type="SpriteFrames" uid="uid://y08gke151q38" path="res://resources/sprite_frames/blue_suit.tres" id="4_gee14"]
@@ -18,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://hdrftrspe301" path="res://scenes/mask/rabbit_mask.tscn" id="12_64kk8"]
 [ext_resource type="PackedScene" uid="uid://ckn8trj0hewsk" path="res://scenes/mask/troll_mask.tscn" id="13_o6psv"]
 [ext_resource type="PackedScene" uid="uid://cl2e22x15c8lq" path="res://scenes/mask/wolf_mask.tscn" id="14_p7exr"]
+[ext_resource type="Script" uid="uid://okem3v4rp2nv" path="res://scripts/masked_character_spawner.gd" id="15_41cje"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lnu2h"]
 vertices = PackedVector2Array(684, 268, 684, 140, 980, 140, 980, 500, 684, 500, 684, 404, 468, 268, 468, 404, 140, 140, 468, 500, 140, 500, 468, 140)
@@ -79,6 +79,16 @@ player_scene = ExtResource("9_0tnpc")
 player_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("5_0tnpc"), ExtResource("4_gee14"), ExtResource("3_u5sy4")])
 masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 
+[node name="MaskedCharacterSpawner" type="MultiplayerSpawner" parent="." unique_id=374073348 node_paths=PackedStringArray("nav_region")]
+unique_name_in_owner = true
+spawn_path = NodePath("../ySorted")
+script = ExtResource("15_41cje")
+nav_region = NodePath("../NavigationRegion2D")
+npc_scene = ExtResource("3_lnu2h")
+player_scene = ExtResource("9_0tnpc")
+skins_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("4_gee14"), ExtResource("3_u5sy4"), ExtResource("5_0tnpc")])
+masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=142268143]
 unique_name_in_owner = true
 navigation_polygon = SubResource("NavigationPolygon_lnu2h")
@@ -90,15 +100,6 @@ tile_set = SubResource("TileSet_t0213")
 [node name="ySorted" type="Node2D" parent="." unique_id=1020136872]
 unique_name_in_owner = true
 y_sort_enabled = true
-
-[node name="NPCSpawner" type="Node2D" parent="ySorted" unique_id=1324171470 node_paths=PackedStringArray("nav_region")]
-script = ExtResource("2_yqjtg")
-nav_region = NodePath("../../NavigationRegion2D")
-navigation_layer = 1
-npc_scene = ExtResource("3_lnu2h")
-npc_sprite_frames = Array[SpriteFrames]([ExtResource("3_u5sy4"), ExtResource("4_gee14"), ExtResource("5_0tnpc"), ExtResource("6_vtaks")])
-masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
-metadata/_custom_type_script = "uid://dkdoc80naeco4"
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1036752382]
 

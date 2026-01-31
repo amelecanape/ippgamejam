@@ -9,37 +9,47 @@ signal round_start()
 @export var player_sprite_frames : Array[SpriteFrames]
 @export var masks_scenes : Array[PackedScene]
 
-var player : PlayerControl
 @onready var spotlight : PanelContainer = $%SpotlightPanel
 const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 
+@export var amount_of_npcs : int = 10
+@onready var masked_spawner : MaskedCharacterSpawner = $%MaskedCharacterSpawner
+
 func _ready():
 	assert(nav_region, "Node needs to have a NavigationRegion2D!")
-	NavigationServer2D.map_changed.connect(func(map: RID): spawn_player())
+	NavigationServer2D.map_changed.connect(func(_map: RID): spawn_characters())
 	spotlight.visible = true
 	spotlight.material.set_shader_parameter("radius", INITIAL_SPOTLIGHT_RADIUS)
 
+@rpc("call_local")
 func start_game():
 	round_start.emit()
-	player.lock_movement = false
 	spotlight.visible = false
 	
 var has_spawned : bool = false
 
-func spawn_player() -> void:
+func _get_random_spawn() -> Vector2:
+	return NavigationServer2D.region_get_random_point(nav_region.get_rid(), 1, false)
+
+func _get_random_skin_index() -> int:
+	return randi_range(0, masked_spawner.skins_sprite_frames.size() - 1)
+	
+func _get_random_mask_index() -> int:
+	return randi_range(0, masked_spawner.skins_sprite_frames.size() - 1)
+
+func spawn_characters() -> void:
+	if not multiplayer.is_server():
+		return
 	if has_spawned:
 		return
-	print("spawning player!")
 	has_spawned = true
-	var spawn_point : Vector2 = NavigationServer2D.region_get_random_point(nav_region.get_rid(), 1, false)
-	var skin_index : int = randi_range(0, player_sprite_frames.size() - 1)
-	var mask_index : int = randi_range(0, masks_scenes.size() - 1)
-	player = player_scene.instantiate() as PlayerControl
-	player.character_frames = player_sprite_frames[skin_index]
-	y_sorted.add_child(player)
-	player.global_position = spawn_point
-	player.set_mask(masks_scenes[mask_index].instantiate() as Mask)
-	player.lock_movement = true
-	start_game()
-	### Telling the player we loaded into the scene
-	#Lobby.player_loaded.rpc_id(1)
+	for i in range(amount_of_npcs):
+		masked_spawner.spawn({"spawn_point": _get_random_spawn(),\
+							  "skin_index":  _get_random_skin_index(),\
+							  "mask_index":  _get_random_mask_index()})
+	for id in Lobby.connected_players:
+		masked_spawner.spawn({"spawn_point": _get_random_spawn(),\
+							  "skin_index":  _get_random_skin_index(),\
+							  "mask_index":  _get_random_mask_index(),\
+							  "player": id})
+	start_game.rpc()

@@ -1,7 +1,7 @@
 class_name MaskedCharacter extends CharacterBody2D
 
 @export var movement_speed: float = 250
-var mov_input : Vector2 = Vector2.ZERO
+@export var mov_input : Vector2 = Vector2.ZERO
 var impulse : Vector2 = Vector2.ZERO
 
 @export var character_frames : SpriteFrames
@@ -26,7 +26,7 @@ func set_mask(new_mask: Mask) -> void:
 		mask.queue_free()
 	mask = new_mask
 	mask.masked_character = self
-	mask_slot.add_child(mask)
+	$%MaskSlot.add_child(mask)
 	mask.position = Vector2.ZERO
 
 func _process(_delta: float) -> void:

@@ -11,6 +11,8 @@ class_name NPCSpawner extends Node
 var has_spawned : bool = false
 
 func _ready() -> void:
+	if not multiplayer.is_server():
+		return
 	assert(nav_region, "Node needs to have a NavigationRegion2D!")
 	NavigationServer2D.map_changed.connect(func(map: RID): spawn_npcs())
 
@@ -26,6 +28,6 @@ func spawn_npcs() -> void:
 		var npc : NPCControl = npc_scene.instantiate() as NPCControl
 		npc.character_frames = npc_sprite_frames[npc_index]
 		npc.navigation_region = nav_region
-		get_parent().add_child(npc)
+		get_parent().add_child(npc, true)
 		npc.global_position = spawn_point
 		npc.set_mask(masks_scenes[mask_index].instantiate() as Mask)

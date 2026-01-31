@@ -14,14 +14,17 @@ func _ready() -> void:
 	navigation_agent.target_reached.connect(_on_target_reached)
 
 func _process(delta: float) -> void:
-	if waiting_for_next_target:
+	super._process(delta)
+	if not multiplayer.is_server():
+		return
+	if waiting_for_next_target and navigation_region:
 		if find_new_target_delay_cnt <= 0:
 			set_movement_target(NavigationServer2D.region_get_random_point(navigation_region.get_rid(), 1, false))
 			waiting_for_next_target = false
 		else:
 			find_new_target_delay_cnt = find_new_target_delay_cnt - delta\
 										 if find_new_target_delay_cnt > 0 else 0.0
-	super._process(delta)
+	
 
 func _on_target_reached() -> void:
 	waiting_for_next_target = true
@@ -33,6 +36,8 @@ func set_movement_target(movement_target: Vector2):
 
 func _physics_process(_delta: float) -> void:
 	super._physics_process(_delta)
+	if not multiplayer.is_server():
+		return
 	mov_input = Vector2.ZERO
 	if navigation_agent.is_navigation_finished():
 		return
