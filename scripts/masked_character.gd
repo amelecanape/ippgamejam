@@ -11,6 +11,8 @@ var mask : Mask
 var mask_base_position : Vector2
 @onready var character_sprite : AnimatedSprite2D = $%CharacterSprite
 
+@onready var graphics : Node2D = $%Graphics
+
 var is_dead : bool
 
 func _ready() -> void:
@@ -25,7 +27,7 @@ func _ready() -> void:
 
 @rpc("call_local")
 func die() -> void:
-	character_sprite.rotation_degreesw = 90
+	character_sprite.rotation_degrees = 90
 	is_dead = true
 	process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -36,14 +38,14 @@ func set_mask(new_mask: Mask) -> void:
 	mask.masked_character = self
 	$%MaskSlot.add_child(mask)
 	mask.position = Vector2.ZERO
+	
+@rpc("any_peer", "call_local")
+func play_dash_fx() -> void:
+	$%DashFx.play("dash")
 
 func _process(_delta: float) -> void:
 	if not is_zero_approx(mov_input.x):
-		character_sprite.flip_h = mov_input.x < 0
-		if mask:
-			mask.sprite.flip_h = mov_input.x < 0
-		mask_slot.position.x = mask_base_position.x * \
-								( -1 if mov_input.x < 0 else 1)
+		graphics.scale.x = -1 if mov_input.x < 0 else 1
 		
 	if not mov_input.is_zero_approx():
 		character_sprite.play("walk")

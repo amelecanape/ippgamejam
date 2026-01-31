@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://t8mmamu4wuxp"]
 
 [ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scripts/masked_character.gd" id="1_ddrle"]
-[ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/mob_boss.tres" id="2_ddrle"]
+[ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/skins/mob_boss.tres" id="2_ddrle"]
+[ext_resource type="SpriteFrames" uid="uid://dd7a8dpvbwerd" path="res://resources/sprite_frames/fx/dash.tres" id="3_ddrle"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rf373"]
 height = 28.0
@@ -34,7 +35,10 @@ shape = SubResource("CapsuleShape2D_rf373")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843683943]
 shape = SubResource("RectangleShape2D_rf373")
 
-[node name="CharacterSprite" type="AnimatedSprite2D" parent="." unique_id=1673587675]
+[node name="Graphics" type="Node2D" parent="." unique_id=923991376]
+unique_name_in_owner = true
+
+[node name="CharacterSprite" type="AnimatedSprite2D" parent="Graphics" unique_id=1673587675]
 unique_name_in_owner = true
 y_sort_enabled = true
 texture_filter = 1
@@ -43,9 +47,18 @@ sprite_frames = ExtResource("2_ddrle")
 animation = &"idle"
 frame_progress = 0.29996884
 
-[node name="MaskSlot" type="Node2D" parent="." unique_id=453581118]
+[node name="MaskSlot" type="Node2D" parent="Graphics" unique_id=453581118]
 unique_name_in_owner = true
 position = Vector2(2, -24)
+
+[node name="DashFx" type="AnimatedSprite2D" parent="Graphics" unique_id=573955260]
+unique_name_in_owner = true
+position = Vector2(-17, -18)
+sprite_frames = ExtResource("3_ddrle")
+animation = &"dash"
+frame = 4
+frame_progress = 1.0
+speed_scale = 4.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1267493538]
 replication_config = SubResource("SceneReplicationConfig_ddrle")

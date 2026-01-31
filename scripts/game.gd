@@ -35,7 +35,7 @@ func _get_random_skin_index() -> int:
 	return randi_range(0, masked_spawner.skins_sprite_frames.size() - 1)
 	
 func _get_random_mask_index() -> int:
-	return randi_range(0, masked_spawner.skins_sprite_frames.size() - 1)
+	return randi_range(0, masked_spawner.masks_scenes.size() - 1)
 
 func spawn_characters() -> void:
 	if not multiplayer.is_server():

@@ -16,4 +16,6 @@ texture = SubResource("AtlasTexture_k2s8o")
 
 [node name="RabbitMaskPower" type="Node" parent="." index="1" unique_id=1617683615]
 script = ExtResource("3_cb6ah")
+dash_duration = null
+dash_dist = null
 metadata/_custom_type_script = "uid://bal6q2hybtmoi"
