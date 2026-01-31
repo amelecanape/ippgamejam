@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ch0nbk11pf2ck"]
+
+[ext_resource type="Script" uid="uid://clsgp7livo7lu" path="res://scripts/mainmenu/connect_player_label.gd" id="1_xttja"]
+
+[node name="Player" type="Label" unique_id=1918980270]
+text = "PLAYERNAME"
+script = ExtResource("1_xttja")
