@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://ch2waandkedv4"]
+
+[ext_resource type="Texture2D" uid="uid://c4jun2u7tinoo" path="res://assets/characters/mob_boss.png" id="1_danh6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_danh6"]
+atlas = ExtResource("1_danh6")
+region = Rect2(0, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyyaf"]
+atlas = ExtResource("1_danh6")
+region = Rect2(20, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6v8j"]
+atlas = ExtResource("1_danh6")
+region = Rect2(40, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhpib"]
+atlas = ExtResource("1_danh6")
+region = Rect2(60, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg1x5"]
+atlas = ExtResource("1_danh6")
+region = Rect2(80, 0, 20, 40)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_danh6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyyaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6v8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhpib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg1x5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
