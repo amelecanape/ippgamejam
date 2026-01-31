@@ -3,8 +3,11 @@ class_name Mask extends Node
 var masked_character : MaskedCharacter
 @export var mask_sprite : Texture2D
 
-@export var cool_down_amount: float
-var cool_down : float
+@export var cool_down_amount: float = 10
+var cool_down : float = 0
+
+func is_ability_ready() -> bool:
+	return cool_down <= 0
 
 func _ready() -> void:
 	masked_character = get_parent() as MaskedCharacter
