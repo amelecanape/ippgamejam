@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://8ua27awp88jn"]
+
+[ext_resource type="Texture2D" uid="uid://c3l81l1xthvso" path="res://assets/fx/flashbang.png" id="1_fc8xk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tggi"]
+atlas = ExtResource("1_fc8xk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x00d"]
+atlas = ExtResource("1_fc8xk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlmgf"]
+atlas = ExtResource("1_fc8xk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r485"]
+atlas = ExtResource("1_fc8xk")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j0b1"]
+atlas = ExtResource("1_fc8xk")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhhhw"]
+atlas = ExtResource("1_fc8xk")
+region = Rect2(320, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tggi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x00d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlmgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r485")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j0b1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhhhw")
+}],
+"loop": true,
+"name": &"flash",
+"speed": 5.0
+}]

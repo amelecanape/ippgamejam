@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dvb5kylasof6b"]
+
+[ext_resource type="Texture2D" uid="uid://6deimf3ipk30" path="res://assets/fx/waves.png" id="1_1tbah"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6qry"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg6wn"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liyii"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwd8a"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfea4"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjfvn"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1rcx"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkdsm"]
+atlas = ExtResource("1_1tbah")
+region = Rect2(448, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6qry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg6wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liyii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwd8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfea4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjfvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1rcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkdsm")
+}],
+"loop": true,
+"name": &"waves",
+"speed": 10.0
+}]
