@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bi7okprx54aby"]
 
 [ext_resource type="Texture2D" uid="uid://beo8w7gbcvrjf" path="res://assets/mansion/tileset.png" id="1_b0ldg"]
+[ext_resource type="Script" uid="uid://iog776uom8nl" path="res://scripts/game.gd" id="1_vtaks"]
 [ext_resource type="Script" uid="uid://dkdoc80naeco4" path="res://scripts/npc_spawner.gd" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://p4t01rmimlig" path="res://scenes/npc_character.tscn" id="3_lnu2h"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/mob_boss.tres" id="3_u5sy4"]
@@ -9,6 +10,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dlb6at1me6y6i" path="res://resources/sprite_frames/red_dress.tres" id="5_0tnpc"]
 [ext_resource type="SpriteFrames" uid="uid://duvrnheasiag2" path="res://resources/sprite_frames/black_suit.tres" id="6_vtaks"]
 [ext_resource type="PackedScene" uid="uid://fe04lx08pprm" path="res://scenes/player_character.tscn" id="9_0tnpc"]
+[ext_resource type="Shader" uid="uid://c2vdhk2roar45" path="res://resources/shaders/spotlight.gdshader" id="11_ojwvf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lnu2h"]
 vertices = PackedVector2Array(684, 268, 684, 140, 980, 140, 980, 500, 684, 500, 684, 404, 468, 268, 468, 404, 140, 140, 468, 500, 140, 500, 468, 140)
@@ -60,9 +62,18 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_e71x4")
 pattern_0 = SubResource("TileMapPattern_t0213")
 
-[node name="Game" type="Node2D" unique_id=445564108]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6yuj"]
+shader = ExtResource("11_ojwvf")
+shader_parameter/radius = 0.10000000475
+
+[node name="Round" type="Node2D" unique_id=445564108]
+script = ExtResource("1_vtaks")
+player_scene = ExtResource("9_0tnpc")
+player_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("5_0tnpc"), ExtResource("4_gee14"), ExtResource("3_u5sy4")])
+masks_scenes = Array[PackedScene]([ExtResource("4_lbhrr")])
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=142268143]
+unique_name_in_owner = true
 navigation_polygon = SubResource("NavigationPolygon_lnu2h")
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=1577435278 groups=["navigation_polygon_source_geometry_group"]]
@@ -70,6 +81,7 @@ tile_map_data = PackedByteArray("AAACAAIAAAAPAAAAAAACAAMAAAAPAAAAAAACAAQAAAAPAAA
 tile_set = SubResource("TileSet_t0213")
 
 [node name="ySorted" type="Node2D" parent="." unique_id=1020136872]
+unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="NPCSpawner" type="Node2D" parent="ySorted" unique_id=1324171470 node_paths=PackedStringArray("nav_region")]
@@ -81,6 +93,26 @@ npc_sprite_frames = Array[SpriteFrames]([ExtResource("3_u5sy4"), ExtResource("4_
 masks_scenes = Array[PackedScene]([ExtResource("4_lbhrr")])
 metadata/_custom_type_script = "uid://dkdoc80naeco4"
 
-[node name="PlayerCharacter" parent="ySorted" unique_id=296287983 instance=ExtResource("9_0tnpc")]
-position = Vector2(323, 349)
-character_frames = ExtResource("6_vtaks")
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1036752382]
+
+[node name="Spotlight" type="Control" parent="HUD" unique_id=23239340]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HUD/Spotlight" unique_id=954878165]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 0
+
+[node name="SpotlightPanel" type="PanelContainer" parent="HUD/Spotlight/AspectRatioContainer" unique_id=770059453]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_g6yuj")
+layout_mode = 2
