@@ -6,6 +6,8 @@
 [node name="NPCCharacter" unique_id=296287983 instance=ExtResource("1_xtrxv")]
 script = ExtResource("2_5hyqr")
 DEBUG = false
+find_new_target_max_delay = 10.0
+find_new_target_min_delay = 1.0
 movement_speed = 400.0
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="." index="2" unique_id=1472955985]

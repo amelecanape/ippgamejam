@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dlb6at1me6y6i"]
+
+[ext_resource type="Texture2D" uid="uid://dxkoeoi7gssvp" path="res://assets/characters/red_dress.png" id="1_yukc8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jojqf"]
+atlas = ExtResource("1_yukc8")
+region = Rect2(0, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu5ae"]
+atlas = ExtResource("1_yukc8")
+region = Rect2(20, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uona"]
+atlas = ExtResource("1_yukc8")
+region = Rect2(40, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f1yg"]
+atlas = ExtResource("1_yukc8")
+region = Rect2(60, 0, 20, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmeb6"]
+atlas = ExtResource("1_yukc8")
+region = Rect2(80, 0, 20, 40)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jojqf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5ae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uona")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f1yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmeb6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

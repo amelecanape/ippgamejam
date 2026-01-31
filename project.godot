@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Masked Soiree"
-run/main_scene="uid://155xx7s6y6ta"
+run/main_scene="uid://bi7okprx54aby"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://c6rkhgw48fjpw"
 
@@ -54,6 +54,12 @@ debug_mouse_left_click={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(205, 15),"global_position":Vector2(214, 63),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_navigation/layer_1="characters"
+2d_physics/layer_2="characters"
 
 [physics]
 
