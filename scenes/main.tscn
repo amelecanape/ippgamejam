@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://fe04lx08pprm" path="res://scenes/player_character.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bi7okprx54aby" path="res://scenes/mansion.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://p4t01rmimlig" path="res://scenes/npc_character.tscn" id="3_sugp2"]
-[ext_resource type="Script" uid="uid://ciolq5k4mhpdt" path="res://scripts/masks/fox_mask.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://bal6q2hybtmoi" path="res://scripts/masks/rabbit_mask.gd" id="3_tefeu"]
 
 [node name="Main" type="Node2D" unique_id=2138465005]
 
@@ -15,13 +15,13 @@ position = Vector2(113, 109)
 DEBUG = true
 movement_speed = 250.0
 
-[node name="FoxMask" type="Node" parent="NPCCharacter" unique_id=1613917570]
-script = ExtResource("3_tbgi4")
-metadata/_custom_type_script = "uid://ciolq5k4mhpdt"
+[node name="RabbitMask" type="Node" parent="NPCCharacter" unique_id=1324338170]
+script = ExtResource("3_tefeu")
+metadata/_custom_type_script = "uid://bal6q2hybtmoi"
 
 [node name="PlayerCharacter" parent="." unique_id=296287983 instance=ExtResource("2_0wfyh")]
 position = Vector2(38, 46)
 
-[node name="FoxMask" type="Node" parent="PlayerCharacter" unique_id=559419682]
-script = ExtResource("3_tbgi4")
-metadata/_custom_type_script = "uid://ciolq5k4mhpdt"
+[node name="RabbitMask" type="Node" parent="PlayerCharacter" unique_id=40407986]
+script = ExtResource("3_tefeu")
+metadata/_custom_type_script = "uid://bal6q2hybtmoi"

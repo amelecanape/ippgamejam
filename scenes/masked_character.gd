@@ -1,7 +1,7 @@
 class_name MaskedCharacter extends CharacterBody2D
 
 @export var movement_speed: float = 250
-var mov_input : Vector2
+var mov_input : Vector2 = Vector2.ZERO
 
 var mask : Mask 
 @onready var mask_sprite : Sprite2D = $%MaskSprite
