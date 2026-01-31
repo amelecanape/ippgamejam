@@ -4,6 +4,9 @@ class_name PlayerControl extends MaskedCharacter
 
 @export var player : int
 
+enum PLAYER_ROLE {SPY, DETECTIVE}
+@export var role : PLAYER_ROLE = PLAYER_ROLE.SPY
+
 func _ready() -> void:
 	super._ready()
 	$Camera2D.enabled = player == multiplayer.get_unique_id()

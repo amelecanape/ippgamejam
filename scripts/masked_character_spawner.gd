@@ -16,6 +16,7 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 	if data.has("player"):
 		var player : PlayerControl = player_scene.instantiate() as PlayerControl
 		player.player = data["player"]
+		player.role = data["role"]
 		masked = player
 	else:
 		var npc : NPCControl = npc_scene.instantiate() as NPCControl

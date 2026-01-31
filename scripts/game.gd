@@ -47,9 +47,14 @@ func spawn_characters() -> void:
 		masked_spawner.spawn({"spawn_point": _get_random_spawn(),\
 							  "skin_index":  _get_random_skin_index(),\
 							  "mask_index":  _get_random_mask_index()})
+	var random_detective : int = randi_range(0, Lobby.connected_players.size() - 1)
+	var detective_id : int = Lobby.connected_players.keys()[random_detective]
 	for id in Lobby.connected_players:
+		var role : PlayerControl.PLAYER_ROLE = PlayerControl.PLAYER_ROLE.DETECTIVE\
+						  if detective_id == id else PlayerControl.PLAYER_ROLE.SPY
 		masked_spawner.spawn({"spawn_point": _get_random_spawn(),\
 							  "skin_index":  _get_random_skin_index(),\
 							  "mask_index":  _get_random_mask_index(),\
-							  "player": id})
+							  "player": id,\
+							  "role": role})
 	start_game.rpc()
