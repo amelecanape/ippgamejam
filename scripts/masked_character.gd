@@ -11,15 +11,23 @@ var mask : Mask
 var mask_base_position : Vector2
 @onready var character_sprite : AnimatedSprite2D = $%CharacterSprite
 
+var is_dead : bool
+
 func _ready() -> void:
 	if character_frames:
 		character_sprite.sprite_frames = character_frames
 	character_sprite.play("idle")
 	character_sprite.frame_changed.connect(_on_character_frame_changed)
+	is_dead = false
 	#assert(mask, "No mask child node in MaskedCharacter!")
 	#mask_sprite.texture = mask.mask_sprite
 	mask_base_position = mask_slot.position
-	
+
+@rpc("call_local")
+func die() -> void:
+	character_sprite.rotation_degreesw = 90
+	is_dead = true
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func set_mask(new_mask: Mask) -> void:
 	if mask:

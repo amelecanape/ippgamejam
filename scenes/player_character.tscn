@@ -8,16 +8,18 @@ script = ExtResource("2_6r27q")
 lock_movement = false
 player = 0
 role = 0
+shootable_mask = 4
 
-[node name="CharacterSprite" parent="." index="0" unique_id=1673587675]
+[node name="CharacterSprite" parent="." index="2" unique_id=1673587675]
 y_sort_enabled = false
 animation = &"walk"
-
-[node name="MultiplayerSynchronizer" parent="." index="3" unique_id=1267493538]
-unique_name_in_owner = true
+frame_progress = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="." index="4" unique_id=973537223]
 unique_name_in_owner = true
 offset = Vector2(2, -12)
 enabled = false
 zoom = Vector2(4, 4)
+
+[node name="MultiplayerSynchronizer" parent="." index="5" unique_id=1267493538]
+unique_name_in_owner = true
