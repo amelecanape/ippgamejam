@@ -10,3 +10,5 @@ movement_speed = 400.0
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="." index="2" unique_id=1472955985]
 unique_name_in_owner = true
+radius = 32.0
+debug_enabled = true

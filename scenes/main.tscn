@@ -7,15 +7,15 @@
 
 [node name="Main" type="Node2D" unique_id=2138465005]
 
+[node name="Mansion" parent="." unique_id=445564108 instance=ExtResource("3_jyhfs")]
+position = Vector2(-354, -256)
+
 [node name="NPCCharacter" parent="." unique_id=1377067066 instance=ExtResource("3_sugp2")]
-position = Vector2(153, 102)
+position = Vector2(113, 109)
 DEBUG = true
 movement_speed = 250.0
 mask = ExtResource("2_jyhfs")
 
 [node name="PlayerCharacter" parent="." unique_id=296287983 instance=ExtResource("2_0wfyh")]
-position = Vector2(95, 42)
+position = Vector2(38, 46)
 mask = ExtResource("2_jyhfs")
-
-[node name="Mansion" parent="." unique_id=445564108 instance=ExtResource("3_jyhfs")]
-position = Vector2(-255, -117)

@@ -15,6 +15,10 @@ run/main_scene="uid://155xx7s6y6ta"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://c6rkhgw48fjpw"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="New Game Project"
@@ -53,4 +57,5 @@ debug_mouse_left_click={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

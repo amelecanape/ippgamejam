@@ -18,3 +18,4 @@ color = Color(0.44705883, 0.19215687, 0.14509805, 1)
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=2050253087]
 rotation = -2.3436317
 vertices = PackedVector2Array(85.354164, -73.20293, -71.035484, 87.16629, -85.336395, 74.617035, 71.035484, -87.16629)
+affect_navigation_mesh = true
