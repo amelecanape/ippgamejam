@@ -1,8 +1,8 @@
 class_name PlayerControl extends MaskedCharacter
 
 func _process(_delta: float) -> void:
-	super._process(_delta)	
-	if Input.is_action_just_pressed("debug_mouse_left_click"):
+	super._process(_delta)
+	if Input.is_action_just_pressed("use_mask_ability") and mask:
 		mask.use_ability()
 
 func _physics_process(_delta: float) -> void:

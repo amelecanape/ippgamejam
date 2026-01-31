@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scripts/masked_character.gd" id="1_ddrle"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/mob_boss.tres" id="2_ddrle"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_alppu"]
-radius = 7.0
-height = 36.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rf373"]
+size = Vector2(12, 6)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ddrle"]
 
@@ -13,19 +12,22 @@ height = 36.0
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ddrle")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843683943]
-shape = SubResource("CapsuleShape2D_alppu")
+movement_speed = 100.0
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="." unique_id=1673587675]
 unique_name_in_owner = true
+y_sort_enabled = true
 texture_filter = 1
+position = Vector2(0, -12)
 sprite_frames = ExtResource("2_ddrle")
 animation = &"idle"
 
 [node name="MaskSlot" type="Node2D" parent="." unique_id=453581118]
 unique_name_in_owner = true
-position = Vector2(2, -12)
+position = Vector2(2, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843683943]
+shape = SubResource("RectangleShape2D_rf373")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1267493538]
 replication_config = SubResource("SceneReplicationConfig_ddrle")

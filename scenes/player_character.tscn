@@ -5,3 +5,10 @@
 
 [node name="PlayerCharacter" unique_id=296287983 instance=ExtResource("1_56udc")]
 script = ExtResource("2_6r27q")
+
+[node name="CharacterSprite" parent="." index="0" unique_id=1673587675]
+y_sort_enabled = false
+animation = &"walk"
+
+[node name="Camera2D" type="Camera2D" parent="." index="4" unique_id=973537223]
+zoom = Vector2(4, 4)

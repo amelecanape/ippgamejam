@@ -26,6 +26,6 @@ func spawn_npcs() -> void:
 		var npc : NPCControl = npc_scene.instantiate() as NPCControl
 		npc.character_frames = npc_sprite_frames[npc_index]
 		npc.navigation_region = nav_region
-		add_child(npc)
+		get_parent().add_child(npc)
 		npc.global_position = spawn_point
 		npc.set_mask(masks_scenes[mask_index].instantiate() as Mask)
