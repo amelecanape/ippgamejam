@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://t8mmamu4wuxp"]
 
-[ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scenes/masked_character.gd" id="1_ddrle"]
+[ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scripts/masked_character.gd" id="1_ddrle"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/mob_boss.tres" id="2_ddrle"]
 [ext_resource type="Texture2D" uid="uid://ydjpdltuplao" path="res://assets/masks/fox_mask.png" id="3_ddrle"]
 
