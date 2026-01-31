@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scripts/masked_character.gd" id="1_ddrle"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/skins/mob_boss.tres" id="2_ddrle"]
-[ext_resource type="SpriteFrames" uid="uid://dd7a8dpvbwerd" path="res://resources/sprite_frames/fx/dash.tres" id="3_ddrle"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rf373"]
 height = 28.0
@@ -24,11 +23,11 @@ motion_mode = 1
 script = ExtResource("1_ddrle")
 movement_speed = 100.0
 
-[node name="ShootingCollision" type="Area2D" parent="." unique_id=434638736]
+[node name="AreaCollision" type="Area2D" parent="." unique_id=434638736]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingCollision" unique_id=414098404]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollision" unique_id=414098404]
 position = Vector2(1, -12)
 shape = SubResource("CapsuleShape2D_rf373")
 
@@ -50,15 +49,6 @@ frame_progress = 0.29996884
 [node name="MaskSlot" type="Node2D" parent="Graphics" unique_id=453581118]
 unique_name_in_owner = true
 position = Vector2(2, -24)
-
-[node name="DashFx" type="AnimatedSprite2D" parent="Graphics" unique_id=573955260]
-unique_name_in_owner = true
-position = Vector2(-17, -18)
-sprite_frames = ExtResource("3_ddrle")
-animation = &"dash"
-frame = 4
-frame_progress = 1.0
-speed_scale = 4.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1267493538]
 replication_config = SubResource("SceneReplicationConfig_ddrle")

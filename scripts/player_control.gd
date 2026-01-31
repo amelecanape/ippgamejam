@@ -50,3 +50,11 @@ func _physics_process(_delta: float) -> void:
 	if lock_movement or player != multiplayer.get_unique_id():
 		mov_input = Vector2.ZERO
 	super._physics_process(_delta)
+
+
+func _on_area_collision_area_entered(area: Area2D) -> void:
+	print("started being jammed!")
+
+
+func _on_area_collision_area_exited(area: Area2D) -> void:
+	print("stopped being jammed!")

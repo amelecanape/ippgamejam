@@ -87,7 +87,7 @@ nav_region = NodePath("../NavigationRegion2D")
 npc_scene = ExtResource("3_lnu2h")
 player_scene = ExtResource("9_0tnpc")
 skins_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("4_gee14"), ExtResource("3_u5sy4"), ExtResource("5_0tnpc")])
-masks_scenes = Array[PackedScene]([ExtResource("12_64kk8")])
+masks_scenes = Array[PackedScene]([ExtResource("9_h7eg2")])
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=142268143]
 unique_name_in_owner = true

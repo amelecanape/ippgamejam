@@ -2,11 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://32c6gd8jll44" path="res://scenes/mask/mask.tscn" id="1_swslt"]
 [ext_resource type="Texture2D" uid="uid://cglnkumjqj12i" path="res://assets/masks/masks.png" id="2_m6ysm"]
-[ext_resource type="Script" uid="uid://ciolq5k4mhpdt" path="res://scripts/masks/fox_mask_power.gd" id="2_s123h"]
+[ext_resource type="Script" uid="uid://c32gdnx4n5x40" path="res://scripts/masks/deer_mask_power.gd" id="3_g24lm"]
+[ext_resource type="SpriteFrames" uid="uid://dvb5kylasof6b" path="res://resources/sprite_frames/fx/waves.tres" id="3_m6ysm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g24lm"]
 atlas = ExtResource("2_m6ysm")
 region = Rect2(23, 1, 23, 13)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6ysm"]
+radius = 104.0
 
 [node name="DeerMask" unique_id=1533623259 instance=ExtResource("1_swslt")]
 
@@ -14,6 +18,19 @@ region = Rect2(23, 1, 23, 13)
 position = Vector2(-1, -1)
 texture = SubResource("AtlasTexture_g24lm")
 
-[node name="FoxMask" type="Node" parent="." index="1" unique_id=705772458]
-script = ExtResource("2_s123h")
-metadata/_custom_type_script = "uid://ciolq5k4mhpdt"
+[node name="WavesFx" type="AnimatedSprite2D" parent="." index="1" unique_id=257029443]
+sprite_frames = ExtResource("3_m6ysm")
+animation = &"waves"
+
+[node name="DeerMask" type="Node" parent="." index="2" unique_id=595610449 node_paths=PackedStringArray("waves_fx", "jammed_area_collider")]
+script = ExtResource("3_g24lm")
+waves_fx = NodePath("../WavesFx")
+jammed_area_collider = NodePath("../JammedArea/CollisionShape2D")
+metadata/_custom_type_script = "uid://c32gdnx4n5x40"
+
+[node name="JammedArea" type="Area2D" parent="." index="3" unique_id=392453426]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JammedArea" index="0" unique_id=92667705]
+shape = SubResource("CircleShape2D_m6ysm")
