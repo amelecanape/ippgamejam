@@ -14,7 +14,7 @@ func _ready() -> void:
 	assert(masked_character, "Mask without MaskedCharacter!")
 
 func _process(delta: float) -> void:
-	cool_down = cool_down - delta if cool_down > 0 else  0
+	cool_down = cool_down - delta if cool_down > 0 else  0.0
 
 func use_ability() -> bool:
 	if cool_down > 0:
