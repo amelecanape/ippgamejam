@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://t8mmamu4wuxp"]
 
-[ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scenes/masked_character.gd" id="1_ddrle"]
-[ext_resource type="Texture2D" uid="uid://c6rkhgw48fjpw" path="res://assets/spy.png" id="1_l6his"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://assets/icon.svg" id="2_rf373"]
+[ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scripts/masked_character.gd" id="1_ddrle"]
+[ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/mob_boss.tres" id="2_ddrle"]
+[ext_resource type="Texture2D" uid="uid://ydjpdltuplao" path="res://assets/masks/fox_mask.png" id="3_ddrle"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_alppu"]
 radius = 7.0
 height = 36.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ddrle"]
 
 [node name="MaskedCharacter" type="CharacterBody2D" unique_id=296287983]
 motion_mode = 1
@@ -15,14 +17,16 @@ script = ExtResource("1_ddrle")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843683943]
 shape = SubResource("CapsuleShape2D_alppu")
 
-[node name="CharacterSprite" type="Sprite2D" parent="." unique_id=1470258134]
+[node name="CharacterSprite" type="AnimatedSprite2D" parent="." unique_id=1673587675]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(0, -3)
-texture = ExtResource("1_l6his")
+sprite_frames = ExtResource("2_ddrle")
+animation = &"idle"
 
 [node name="MaskSprite" type="Sprite2D" parent="CharacterSprite" unique_id=1337100490]
 unique_name_in_owner = true
-position = Vector2(2.0277226, -6.77398)
-scale = Vector2(0.056435585, 0.05898568)
-texture = ExtResource("2_rf373")
+position = Vector2(2, -12)
+texture = ExtResource("3_ddrle")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1267493538]
+replication_config = SubResource("SceneReplicationConfig_ddrle")
