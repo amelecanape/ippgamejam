@@ -40,8 +40,9 @@ func _ready():
 @rpc("call_local", "any_peer")
 func _loaded_scene():
 	players_that_loaded_scene += 1
-	if players_that_loaded_scene == Lobby.connected_players.size():
-		print("all players loaded")
+	if players_that_loaded_scene < Lobby.connected_players.size():
+		return
+	print("all players loaded")
 	$RoundStartDelay.start()
 	print("delay to start round")
 
