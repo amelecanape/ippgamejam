@@ -2,6 +2,8 @@ class_name MaskedCharacter extends CharacterBody2D
 
 signal died()
 
+@export var round : Round
+
 @export var movement_speed: float = 250
 @export var mov_input : Vector2 = Vector2.ZERO
 var impulse : Vector2 = Vector2.ZERO
@@ -70,7 +72,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_mouse_entered() -> void:
-	set_outline(Color.WHITE)
+	if round.player_role == PlayerControl.PLAYER_ROLE.DETECTIVE:
+		set_outline(Color.RED)
 
 func _on_mouse_exited() -> void:
-	set_outline(Color.TRANSPARENT)
+	if round.player_role == PlayerControl.PLAYER_ROLE.DETECTIVE:
+		set_outline(Color.TRANSPARENT)

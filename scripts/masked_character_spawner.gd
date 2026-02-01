@@ -14,13 +14,12 @@ func _ready() -> void:
 
 func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 	var masked : MaskedCharacter
+	var round: Round = get_parent() as Round
 	if data.has("player"):
 		var player : PlayerControl = player_scene.instantiate() as PlayerControl
 		player.player = data["player"]
 		player.role = data["role"]
 		player.lock_movement = true
-		var round: Round = get_parent() as Round
-		player.round = round
 		round.round_start.connect(player._on_round_start)
 		masked = player
 		masked.died.connect(round._on_player_died)
@@ -32,6 +31,7 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 		masked.died.connect((get_parent() as Round)._on_npc_died)
 		if data["important"]:
 			task_manager.add_important_npc(npc)
+	masked.round = round
 	return _configure_masked(data, masked)
 	
 func _configure_masked(data, masked : MaskedCharacter) -> MaskedCharacter:

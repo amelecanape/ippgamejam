@@ -1,7 +1,5 @@
 class_name PlayerControl extends MaskedCharacter
 
-var round : Round
-
 @export var lock_movement : bool = false
 
 @export var player : int
@@ -76,8 +74,8 @@ func _on_area_collision_area_exited(area: Area2D) -> void:
 	
 func _on_mouse_entered() -> void:
 	if player != multiplayer.get_unique_id():
-		set_outline(Color.WHITE)
+		super._on_mouse_entered()
 
 func _on_mouse_exited() -> void:
 	if player != multiplayer.get_unique_id():
-		set_outline(Color.TRANSPARENT)
+		super._on_mouse_exited()
