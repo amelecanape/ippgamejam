@@ -35,8 +35,9 @@ func _ready():
 	NavigationServer2D.map_changed.connect(func(_map: RID): spawn_characters())
 	spotlight.visible = true
 	spotlight.material.set_shader_parameter("radius", INITIAL_SPOTLIGHT_RADIUS)
+	remaining_spies.text = REMAINING_SPIES % [Lobby.connected_players.size() - 1 - killed_spies]
 	_loaded_scene.rpc_id(1) # Tell server (and ourselfs) that we loaded the scene
-
+	
 @rpc("call_local", "any_peer")
 func _loaded_scene():
 	players_that_loaded_scene += 1
