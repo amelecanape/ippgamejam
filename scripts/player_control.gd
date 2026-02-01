@@ -46,10 +46,10 @@ func _shoot(pos: Vector2) -> void:
 			masked.die.rpc()
 
 func _physics_process(_delta: float) -> void:
-	mov_input = Input.get_vector("character_move_neg_x","character_move_pos_x",\
+	if not lock_movement and player == multiplayer.get_unique_id():
+		mov_input = Input.get_vector("character_move_neg_x","character_move_pos_x",\
 											   "character_move_neg_y","character_move_pos_y")
-	if lock_movement or player != multiplayer.get_unique_id():
-		mov_input = Vector2.ZERO
+	
 	super._physics_process(_delta)
 
 
