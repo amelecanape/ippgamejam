@@ -26,7 +26,7 @@ shader_parameter/radius = 0.10000000475
 [node name="Round" type="Node2D" unique_id=445564108]
 script = ExtResource("1_vtaks")
 amount_of_npcs = 50
-important_npcs = 0
+important_npcs = 2
 amount_of_items = 3
 
 [node name="TaskManager" type="Node" parent="." unique_id=1945994480]
