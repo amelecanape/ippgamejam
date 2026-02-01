@@ -104,16 +104,19 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="RoleLabel" type="Label" parent="HUD/PanelContainer/MarginContainer/PanelContainer" unique_id=409776928]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Role: Spy"
 
 [node name="AbilityCooldown" type="Label" parent="HUD/PanelContainer/MarginContainer/PanelContainer" unique_id=646019072]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Ability Cooldown"
 
 [node name="RemainingSpies" type="Label" parent="HUD/PanelContainer/MarginContainer/PanelContainer" unique_id=2055225214]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Spies Remaining: 1"

@@ -21,6 +21,14 @@ const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 
 @export var player_role : PlayerControl.PLAYER_ROLE
 
+const  ROLE_DETECTIVE : String = "You are a DETECTIVE"
+const  ROLE_SPY : String = "You are a SPY"
+const  REMAINING_SPIES : String = "%d remaining spies"
+
+@onready var role_label : Label = $%RoleLabel
+@onready var ability_cooldown : Label = $%AbilityCooldown
+@onready var remaining_spies : Label = $%RemainingSpies
+
 func _ready():
 	assert(nav_region, "Node needs to have a NavigationRegion2D!")
 	NavigationServer2D.map_changed.connect(func(_map: RID): spawn_characters())
@@ -29,12 +37,17 @@ func _ready():
 
 func _on_npc_died() -> void:
 	detective_amount_of_bullets -= 1
+	if not multiplayer.is_server():
+		return
 	if detective_amount_of_bullets < Lobby.connected_players.size() - 1:
 		print("Detective lost!")
 		round_end.emit(false)
 func _on_player_died() -> void:
 	detective_amount_of_bullets -= 1
 	killed_spies += 1
+	remaining_spies.text = REMAINING_SPIES % [Lobby.connected_players.size() - 1 - killed_spies]
+	if not multiplayer.is_server():
+		return
 	if killed_spies == Lobby.connected_players.size() - 1:
 		print("Detective won!")
 		round_end.emit(true)
@@ -75,4 +88,11 @@ func spawn_characters() -> void:
 							  "mask_index":  _get_random_mask_index(),\
 							  "player": id,\
 							  "role": role})
+		set_player_role.rpc_id(id, role)
 	start_game.rpc()
+	
+@rpc("call_local")
+func set_player_role(role: PlayerControl.PLAYER_ROLE) -> void:
+	player_role = role
+	role_label.text = ROLE_DETECTIVE if role == PlayerControl.PLAYER_ROLE.DETECTIVE\
+							else ROLE_SPY
