@@ -1,6 +1,7 @@
 class_name Round extends Node2D
 
 signal round_start()
+signal round_end(detective_won: bool)
 
 @onready var y_sorted : Node2D = $%ySorted
 @onready var nav_region : NavigationRegion2D = $%NavigationRegion2D
@@ -15,12 +16,27 @@ const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 @export var amount_of_npcs : int = 10
 @onready var masked_spawner : MaskedCharacterSpawner = $%MaskedCharacterSpawner
 
+@export var detective_amount_of_bullets : int = 4
+@export var killed_spies : int = 0
+
 func _ready():
 	assert(nav_region, "Node needs to have a NavigationRegion2D!")
 	NavigationServer2D.map_changed.connect(func(_map: RID): spawn_characters())
 	spotlight.visible = true
 	spotlight.material.set_shader_parameter("radius", INITIAL_SPOTLIGHT_RADIUS)
 
+func _on_npc_died() -> void:
+	detective_amount_of_bullets -= 1
+	if detective_amount_of_bullets < Lobby.connected_players.size() - 1:
+		print("Detective lost!")
+		round_end.emit(false)
+func _on_player_died() -> void:
+	detective_amount_of_bullets -= 1
+	killed_spies += 1
+	if killed_spies == Lobby.connected_players.size() - 1:
+		print("Detective won!")
+		round_end.emit(true)
+	
 @rpc("call_local")
 func start_game():
 	round_start.emit()

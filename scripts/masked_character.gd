@@ -1,5 +1,7 @@
 class_name MaskedCharacter extends CharacterBody2D
 
+signal died()
+
 @export var movement_speed: float = 250
 @export var mov_input : Vector2 = Vector2.ZERO
 var impulse : Vector2 = Vector2.ZERO
@@ -30,6 +32,7 @@ func die() -> void:
 	character_sprite.rotation_degrees = 90
 	is_dead = true
 	process_mode = Node.PROCESS_MODE_DISABLED
+	died.emit()
 
 func set_mask(new_mask: Mask) -> void:
 	if mask:

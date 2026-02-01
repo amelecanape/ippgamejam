@@ -18,10 +18,14 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 		player.player = data["player"]
 		player.role = data["role"]
 		masked = player
+		if multiplayer.is_server():
+			masked.died.connect((get_parent() as Round)._on_player_died)
 	else:
 		var npc : NPCControl = npc_scene.instantiate() as NPCControl
 		npc.navigation_region = nav_region
 		masked = npc
+		if multiplayer.is_server():
+			masked.died.connect((get_parent() as Round)._on_npc_died)
 	return _configure_masked(data, masked)
 	
 func _configure_masked(data, masked : MaskedCharacter) -> MaskedCharacter:

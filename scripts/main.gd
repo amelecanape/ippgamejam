@@ -87,7 +87,11 @@ func _on_start_round_pressed() -> void:
 func load_round():
 	main_menu_canvas.visible = false
 	round_instance = round_scene.instantiate() as Round
+	round_instance.round_end.connect(_on_round_end)
 	add_child(round_instance)
+
+func _on_round_end(_detective_won: bool) -> void:
+	free_round.rpc()
 
 @rpc("call_local", "reliable")
 func free_round():

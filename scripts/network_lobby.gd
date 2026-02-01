@@ -39,6 +39,7 @@ func connect_client(address: String = DEFAULT_SERVER_IP, port: int = PORT) -> Er
 	return OK
 
 func remove_multiplayer_peer() -> void:
+	connected_players.clear()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	
 func _on_player_connected(id : int):
