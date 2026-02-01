@@ -22,7 +22,6 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_o1a1c")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1619038607]
-z_index = -1
 position = Vector2(-0.5, 0.4999981)
 
 [node name="Progress" type="TextureProgressBar" parent="Node2D" unique_id=1214011195]
