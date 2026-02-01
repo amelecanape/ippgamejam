@@ -53,8 +53,12 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_area_collision_area_entered(area: Area2D) -> void:
+	if mask == area.get_parent() or player == multiplayer.get_unique_id():
+		return
 	print("started being jammed!")
 
 
 func _on_area_collision_area_exited(area: Area2D) -> void:
+	if mask == area.get_parent() or player == multiplayer.get_unique_id():
+		return
 	print("stopped being jammed!")
