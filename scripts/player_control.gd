@@ -3,6 +3,7 @@ class_name PlayerControl extends MaskedCharacter
 @export var lock_movement : bool = false
 
 @export var player : int
+@onready var camera : Camera2D = $Camera2D
 
 enum PLAYER_ROLE {SPY, DETECTIVE}
 @export var role : PLAYER_ROLE = PLAYER_ROLE.SPY

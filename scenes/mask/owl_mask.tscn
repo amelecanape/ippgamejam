@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dtr27uoj7x05g"]
 
 [ext_resource type="PackedScene" uid="uid://32c6gd8jll44" path="res://scenes/mask/mask.tscn" id="1_4rl4p"]
-[ext_resource type="Script" uid="uid://ciolq5k4mhpdt" path="res://scripts/masks/fox_mask_power.gd" id="2_1k8g4"]
 [ext_resource type="Texture2D" uid="uid://cglnkumjqj12i" path="res://assets/masks/masks.png" id="2_ulpdi"]
+[ext_resource type="Script" uid="uid://c22bvqvfu88wx" path="res://scripts/masks/owl_mask_power.gd" id="3_1k8g4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tliwj"]
 atlas = ExtResource("2_ulpdi")
@@ -13,6 +13,6 @@ region = Rect2(145, 6, 10, 8)
 [node name="Sprite" parent="." index="0" unique_id=1359893921]
 texture = SubResource("AtlasTexture_tliwj")
 
-[node name="FoxMask" type="Node" parent="." index="1" unique_id=705772458]
-script = ExtResource("2_1k8g4")
-metadata/_custom_type_script = "uid://ciolq5k4mhpdt"
+[node name="OwlMaskPower" type="Node" parent="." index="1" unique_id=915124992]
+script = ExtResource("3_1k8g4")
+metadata/_custom_type_script = "uid://c22bvqvfu88wx"
