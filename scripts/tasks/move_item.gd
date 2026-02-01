@@ -2,6 +2,8 @@ class_name MoveItem extends Node2D
 
 signal finished_item_taken()
 
+@export var round : Round
+
 @export var item_take_rate: float = 25
 @export var item_take_decline_rate: float = 5
 var item_take_porcentage: float = 0
@@ -13,6 +15,8 @@ var item_take_porcentage: float = 0
 var player_inside_bugging_area : bool = false
 
 func _process(delta: float) -> void:
+	if round.player_role == PlayerControl.PLAYER_ROLE.DETECTIVE:
+		progress.visible = false
 	progress.value = item_take_porcentage
 	if item_take_porcentage >= 100:
 		return

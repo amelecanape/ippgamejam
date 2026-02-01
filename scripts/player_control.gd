@@ -9,20 +9,22 @@ enum PLAYER_ROLE {SPY, DETECTIVE}
 @export var role : PLAYER_ROLE = PLAYER_ROLE.SPY
 
 @export var shootable_mask : int
+@export var detective_color : Color = Color.SKY_BLUE
+@export var spy_color : Color = Color.GREEN_YELLOW
 
 func _ready() -> void:
 	super._ready()
 	$Camera2D.enabled = player == multiplayer.get_unique_id()
 	if role == PLAYER_ROLE.DETECTIVE:
-		set_outline(Color.SKY_BLUE)
+		set_outline(detective_color)
 	elif round.player_role == PLAYER_ROLE.SPY:
-		set_outline(Color.ORANGE)
+		set_outline(spy_color)
 
 func on_player_role_decide(new_role: PlayerControl.PLAYER_ROLE) -> void:
 	if role == PLAYER_ROLE.DETECTIVE:
-		set_outline(Color.SKY_BLUE)
+		set_outline(detective_color)
 	elif new_role == PLAYER_ROLE.SPY:
-		set_outline(Color.ORANGE)
+		set_outline(spy_color)
 	
 func _enter_tree() -> void:
 	$MultiplayerSynchronizer.set_multiplayer_authority(player)
