@@ -73,6 +73,8 @@ pattern_0 = SubResource("TileMapPattern_t0213")
 shader = ExtResource("11_ojwvf")
 shader_parameter/radius = 0.10000000475
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hnppa"]
+
 [node name="Round" type="Node2D" unique_id=445564108]
 script = ExtResource("1_vtaks")
 player_scene = ExtResource("9_0tnpc")
@@ -124,3 +126,37 @@ stretch_mode = 0
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_g6yuj")
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD" unique_id=654749174]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hnppa")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer" unique_id=1779390122]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer" unique_id=204600514]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="RoleLabel" type="Label" parent="HUD/PanelContainer/MarginContainer/PanelContainer" unique_id=409776928]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Role: Spy"
+
+[node name="AbilityCooldown" type="Label" parent="HUD/PanelContainer/MarginContainer/PanelContainer" unique_id=646019072]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Ability Cooldown"
+
+[node name="RemainingSpies" type="Label" parent="HUD/PanelContainer/MarginContainer/PanelContainer" unique_id=2055225214]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Spies Remaining: 1"
