@@ -68,9 +68,11 @@ func _on_player_disconnected(peer_id : int) -> void:
 			return
 
 func _on_server_disconnect() -> void:
-		ready_players.clear()
-		connection_status.text = DISCONNECTED
-		switch_to_menu()
+	if round_instance:
+		return_to_main_menu()
+	ready_players.clear()
+	connection_status.text = DISCONNECTED
+	switch_to_menu()
 
 func _on_host_server_pressed() -> void:
 	var error : Error = Lobby.create_server()
@@ -102,7 +104,7 @@ func _on_start_round_pressed() -> void:
 		load_round.rpc()
 
 @rpc("call_local", "reliable")
-func load_round():
+func load_round() -> void:
 	main_menu_canvas.visible = false
 	round_instance = round_scene.instantiate() as Round
 	round_instance.round_end.connect(_on_round_end)
@@ -112,12 +114,15 @@ func _on_round_end(detective_won: bool) -> void:
 	end_round.rpc(detective_won)
 
 @rpc("call_local", "reliable")
-func end_round(detective_won: bool):
+func end_round(detective_won: bool) -> void:
+	return_to_main_menu()
+	round_result.text = DETECTIVE_WON if detective_won else SPIES_WON
+	switch_to_round_sumary()
+
+func return_to_main_menu() -> void:
 	ready_players.clear()
 	round_instance.queue_free()
 	main_menu_canvas.visible = true
-	round_result.text = DETECTIVE_WON if detective_won else SPIES_WON
-	switch_to_round_sumary()
 
 func _on_ready_pressed() -> void:
 	ready_up.rpc()
