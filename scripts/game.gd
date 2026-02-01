@@ -11,6 +11,7 @@ signal round_end(detective_won: bool)
 const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 
 @export var amount_of_npcs : int = 1
+@export var important_npcs : int = 5
 @onready var masked_spawner : MaskedCharacterSpawner = $%MaskedCharacterSpawner
 
 @export var detective_amount_of_bullets : int = 4
@@ -86,12 +87,6 @@ func spawn_characters() -> void:
 	if has_spawned:
 		return
 	has_spawned = true
-	for i in range(amount_of_npcs):
-		masked_spawner.spawn({"spawn_point": _get_random_spawn(),\
-							  "skin_index":  _get_random_skin_index(),\
-							  "mask_index":  _get_random_mask_index(),\
-							  "npc_id": i,\
-							  "important": true})
 	var random_detective : int = randi_range(0, Lobby.connected_players.size() - 1)
 	var detective_id : int = Lobby.connected_players.keys()[random_detective]
 	for id in Lobby.connected_players:
@@ -103,6 +98,12 @@ func spawn_characters() -> void:
 							  "player": id,\
 							  "role": role})
 		set_player_role.rpc_id(id, role)
+	for i in range(amount_of_npcs):
+		masked_spawner.spawn({"spawn_point": _get_random_spawn(),\
+							  "skin_index":  _get_random_skin_index(),\
+							  "mask_index":  _get_random_mask_index(),\
+							  "npc_id": i,\
+							  "important": i < important_npcs})
 	
 @rpc("call_local")
 func set_player_role(role: PlayerControl.PLAYER_ROLE) -> void:

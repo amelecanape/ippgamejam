@@ -20,6 +20,7 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 		player.player = data["player"]
 		player.role = data["role"]
 		player.lock_movement = true
+		round.new_player_role.connect(player.on_player_role_decide)
 		round.round_start.connect(player._on_round_start)
 		masked = player
 		masked.died.connect(round._on_player_died)
@@ -29,7 +30,7 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 		npc.npc_id = data["npc_id"]
 		masked = npc
 		masked.died.connect((get_parent() as Round)._on_npc_died)
-		if data["important"]:
+		if data["important"] and round.player_role == PlayerControl.PLAYER_ROLE.SPY:
 			task_manager.add_important_npc(npc)
 	masked.round = round
 	return _configure_masked(data, masked)

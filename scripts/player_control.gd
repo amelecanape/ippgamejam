@@ -17,6 +17,12 @@ func _ready() -> void:
 		set_outline(Color.SKY_BLUE)
 	elif round.player_role == PLAYER_ROLE.SPY:
 		set_outline(Color.ORANGE)
+
+func on_player_role_decide(new_role: PlayerControl.PLAYER_ROLE) -> void:
+	if role == PLAYER_ROLE.DETECTIVE:
+		set_outline(Color.SKY_BLUE)
+	elif new_role == PLAYER_ROLE.SPY:
+		set_outline(Color.ORANGE)
 	
 func _enter_tree() -> void:
 	$MultiplayerSynchronizer.set_multiplayer_authority(player)
