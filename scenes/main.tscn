@@ -51,8 +51,13 @@ alignment = 1
 layout_mode = 2
 text = "Connect to Server"
 
+[node name="ExitGame" type="Button" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer" unique_id=920317894]
+layout_mode = 2
+text = "Exit Game"
+
 [node name="Lobby" type="PanelContainer" parent="MainMenuCanvas" unique_id=728347574]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -85,11 +90,49 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Start Round"
 
+[node name="Ready" type="Button" parent="MainMenuCanvas/Lobby/MarginContainer/VBoxContainer" unique_id=893815433]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ready"
+
 [node name="Disconnect" type="Button" parent="MainMenuCanvas/Lobby/MarginContainer/VBoxContainer" unique_id=981787417]
 layout_mode = 2
 text = "Disconnect"
 
+[node name="RoundSumary" type="PanelContainer" parent="MainMenuCanvas" unique_id=1046504758]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuCanvas/RoundSumary" unique_id=1614665701]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 125
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuCanvas/RoundSumary/MarginContainer" unique_id=24257310]
+layout_mode = 2
+alignment = 1
+
+[node name="RoundResult" type="Label" parent="MainMenuCanvas/RoundSumary/MarginContainer/VBoxContainer" unique_id=521083585]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Players Connected"
+horizontal_alignment = 1
+
+[node name="ReturnToLobby" type="Button" parent="MainMenuCanvas/RoundSumary/MarginContainer/VBoxContainer" unique_id=1124690466]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return to Lobby"
+
 [connection signal="pressed" from="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/HostServer" to="." method="_on_host_server_pressed"]
 [connection signal="pressed" from="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/ConnectToServer" to="." method="_on_connect_to_server_pressed"]
+[connection signal="pressed" from="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="MainMenuCanvas/Lobby/MarginContainer/VBoxContainer/StartRound" to="." method="_on_start_round_pressed"]
+[connection signal="pressed" from="MainMenuCanvas/Lobby/MarginContainer/VBoxContainer/Ready" to="." method="_on_ready_pressed"]
 [connection signal="pressed" from="MainMenuCanvas/Lobby/MarginContainer/VBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]
+[connection signal="pressed" from="MainMenuCanvas/RoundSumary/MarginContainer/VBoxContainer/ReturnToLobby" to="." method="_on_return_to_lobby_pressed"]

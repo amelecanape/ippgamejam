@@ -20,6 +20,14 @@ const HOSTING_ISSUE : String = "Hosting Issues"
 @onready var lobby : Control = $%Lobby
 @onready var connected_players : Control = $%ConnectedPlayers
 @onready var start_round : Button = $%StartRound
+@onready var ready_button : Button = $%Ready
+
+const DETECTIVE_WON : String = "Detective Won!"
+const SPIES_WON : String = "Spies Won!"
+@onready var round_result : Label = $%RoundResult
+@onready var round_sumary : Control = $%RoundSumary
+
+var ready_players : Array[int] = []
 
 func _ready() -> void:
 	Lobby.server_disconnected.connect(_on_server_disconnect)
@@ -30,13 +38,21 @@ func _ready() -> void:
 func switch_to_menu() -> void:
 	main_menu.visible = true
 	lobby.visible = false
+	round_sumary.visible = false
 	for c : Node in connected_players.get_children():
 		c.queue_free()
 	
 func switch_to_lobby() -> void:
 	main_menu.visible = false
 	lobby.visible = true
-	start_round.disabled = not multiplayer.is_server()
+	start_round.disabled = true
+	ready_button.disabled = false
+	round_sumary.visible = false
+	
+func switch_to_round_sumary() -> void:
+	main_menu.visible = false
+	lobby.visible = false
+	round_sumary.visible = true
 
 func _on_player_connected(peer_id : int, player_name : String) -> void:
 	var label : ConnectPlayerLabel = lobby_entry_scene.instantiate() as ConnectPlayerLabel
@@ -45,12 +61,14 @@ func _on_player_connected(peer_id : int, player_name : String) -> void:
 	connected_players.add_child(label)
 
 func _on_player_disconnected(peer_id : int) -> void:
+	ready_players.erase(peer_id)
 	for l : ConnectPlayerLabel in connected_players.get_children():
 		if l.player_id == peer_id:
 			connected_players.remove_child(l)
 			return
 
 func _on_server_disconnect() -> void:
+		ready_players.clear()
 		connection_status.text = DISCONNECTED
 		switch_to_menu()
 
@@ -90,10 +108,35 @@ func load_round():
 	round_instance.round_end.connect(_on_round_end)
 	add_child(round_instance)
 
-func _on_round_end(_detective_won: bool) -> void:
-	free_round.rpc()
+func _on_round_end(detective_won: bool) -> void:
+	end_round.rpc(detective_won)
 
 @rpc("call_local", "reliable")
-func free_round():
+func end_round(detective_won: bool):
+	ready_players.clear()
 	round_instance.queue_free()
 	main_menu_canvas.visible = true
+	round_result.text = DETECTIVE_WON if detective_won else SPIES_WON
+	switch_to_round_sumary()
+
+func _on_ready_pressed() -> void:
+	ready_up.rpc()
+	ready_button.disabled = true
+	
+@rpc("any_peer", "call_local", "reliable")
+func ready_up() -> void:
+	var sender_id = multiplayer.get_remote_sender_id()
+	if not ready_players.has(sender_id):
+		ready_players.append(sender_id)
+	if multiplayer.is_server():
+		for id : int in Lobby.connected_players.keys():
+			if not ready_players.has(id):
+				return
+		start_round.disabled = false
+
+func _on_return_to_lobby_pressed() -> void:
+	switch_to_lobby()
+
+
+func _on_exit_game_pressed() -> void:
+	get_tree().quit()
