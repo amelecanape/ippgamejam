@@ -19,6 +19,8 @@ const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 @export var detective_amount_of_bullets : int = 4
 @export var killed_spies : int = 0
 
+@export var player_role : PlayerControl.PLAYER_ROLE
+
 func _ready():
 	assert(nav_region, "Node needs to have a NavigationRegion2D!")
 	NavigationServer2D.map_changed.connect(func(_map: RID): spawn_characters())
