@@ -5,7 +5,7 @@ signal round_start()
 signal round_end(detective_won: bool)
 
 @onready var y_sorted : Node2D = $%ySorted
-@onready var nav_region : NavigationRegion2D = $%NavigationRegion2D
+@onready var nav_region : NavigationRegion2D = ($%Map as Map).nav_region
 
 @export var player_scene : PackedScene
 @export var player_sprite_frames : Array[SpriteFrames]

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://byb1qo8kxt12x"]
+
+[ext_resource type="Script" uid="uid://0wiaxfbd0usk" path="res://scripts/tasks/npc_bugging_task.gd" id="1_o1a1c"]
+
+[node name="NPCBuggingTask" type="Node2D" unique_id=574432315]
+script = ExtResource("1_o1a1c")
+metadata/_custom_type_script = "uid://0wiaxfbd0usk"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=252215497]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1969327653]

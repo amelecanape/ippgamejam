@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://t8mmamu4wuxp" path="res://scenes/masked_character.tscn" id="1_xtrxv"]
 [ext_resource type="Script" uid="uid://csmplxdsp3nj0" path="res://scripts/npc_control.gd" id="2_5hyqr"]
+[ext_resource type="PackedScene" uid="uid://byb1qo8kxt12x" path="res://scenes/tasks/npc_bugging_task.tscn" id="3_cst7n"]
 
 [node name="NPCCharacter" unique_id=296287983 instance=ExtResource("1_xtrxv")]
 script = ExtResource("2_5hyqr")
@@ -18,3 +19,5 @@ debug_enabled = true
 
 [node name="CharacterSprite" parent="Graphics" parent_id_path=PackedInt32Array(923991376) index="0" unique_id=1673587675]
 y_sort_enabled = false
+
+[node name="NPCBuggingTask" parent="." index="5" unique_id=574432315 instance=ExtResource("3_cst7n")]
