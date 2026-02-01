@@ -7,10 +7,6 @@ signal round_end(detective_won: bool)
 @onready var y_sorted : Node2D = $%ySorted
 @onready var nav_region : NavigationRegion2D = ($%Map as Map).nav_region
 
-@export var player_scene : PackedScene
-@export var player_sprite_frames : Array[SpriteFrames]
-@export var masks_scenes : Array[PackedScene]
-
 @onready var spotlight : PanelContainer = $%SpotlightPanel
 const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 
@@ -18,7 +14,7 @@ const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 @onready var masked_spawner : MaskedCharacterSpawner = $%MaskedCharacterSpawner
 
 @export var detective_amount_of_bullets : int = 4
-@export var killed_spies : int = 0
+var killed_spies : int = 0
 
 const  ROLE_DETECTIVE : String = "You are a DETECTIVE"
 const  ROLE_SPY : String = "You are a SPY"

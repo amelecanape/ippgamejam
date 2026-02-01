@@ -29,9 +29,6 @@ shader_parameter/radius = 0.10000000475
 
 [node name="Round" type="Node2D" unique_id=445564108]
 script = ExtResource("1_vtaks")
-player_scene = ExtResource("9_0tnpc")
-player_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("5_0tnpc"), ExtResource("4_gee14"), ExtResource("3_u5sy4")])
-masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 
 [node name="TaskManager" type="Node" parent="." unique_id=1945994480]
 script = ExtResource("15_h7eg2")
@@ -52,7 +49,7 @@ task_manager = NodePath("../TaskManager")
 npc_scene = ExtResource("3_lnu2h")
 player_scene = ExtResource("9_0tnpc")
 skins_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("4_gee14"), ExtResource("3_u5sy4"), ExtResource("5_0tnpc")])
-masks_scenes = Array[PackedScene]([ExtResource("9_h7eg2")])
+masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 
 [node name="Map" parent="." unique_id=595974935 instance=ExtResource("17_hnppa")]
 unique_name_in_owner = true
