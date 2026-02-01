@@ -9,6 +9,8 @@ class_name NPCControl extends MaskedCharacter
 var find_new_target_delay_cnt : float = 0
 var waiting_for_next_target : bool = true
 
+@export var npc_id : int = 0
+
 func _ready() -> void:
 	super._ready()
 	navigation_agent.target_reached.connect(_on_target_reached)

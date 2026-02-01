@@ -17,16 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://ckn8trj0hewsk" path="res://scenes/mask/troll_mask.tscn" id="13_o6psv"]
 [ext_resource type="PackedScene" uid="uid://cl2e22x15c8lq" path="res://scenes/mask/wolf_mask.tscn" id="14_p7exr"]
 [ext_resource type="Script" uid="uid://okem3v4rp2nv" path="res://scripts/masked_character_spawner.gd" id="15_41cje"]
-[ext_resource type="PackedScene" path="res://scenes/mansion.tscn" id="17_hnppa"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_lnu2h"]
-vertices = PackedVector2Array(684, 268, 684, 140, 980, 140, 980, 500, 684, 500, 684, 404, 468, 268, 468, 404, 140, 140, 468, 500, 140, 500, 468, 140)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 3, 5, 6), PackedInt32Array(6, 5, 7, 8), PackedInt32Array(7, 9, 10, 8), PackedInt32Array(11, 6, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(69, 72, 63, 575, 1056, 571, 1052, 66)])
-parsed_geometry_type = 1
-parsed_collision_mask = 4278190081
-source_geometry_mode = 1
-agent_radius = 12.0
+[ext_resource type="Script" uid="uid://cah2dafpl1m6n" path="res://scripts/TaskManager.gd" id="15_h7eg2"]
+[ext_resource type="PackedScene" uid="uid://byb1qo8kxt12x" path="res://scenes/tasks/npc_bugging_task.tscn" id="16_h7eg2"]
+[ext_resource type="PackedScene" uid="uid://bej1u150n5oyp" path="res://scenes/map.tscn" id="17_hnppa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g6yuj"]
 shader = ExtResource("11_ojwvf")
@@ -36,30 +29,31 @@ shader_parameter/radius = 0.10000000475
 
 [node name="Round" type="Node2D" unique_id=445564108]
 script = ExtResource("1_vtaks")
-player_scene = ExtResource("9_0tnpc")
-player_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("5_0tnpc"), ExtResource("4_gee14"), ExtResource("3_u5sy4")])
-masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
+amount_of_npcs = 50
+
+[node name="TaskManager" type="Node" parent="." unique_id=1945994480]
+script = ExtResource("15_h7eg2")
+npc_bugging_task_scene = ExtResource("16_h7eg2")
+metadata/_custom_type_script = "uid://cah2dafpl1m6n"
 
 [node name="RoundStartDelay" type="Timer" parent="." unique_id=1114077709]
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="MaskedCharacterSpawner" type="MultiplayerSpawner" parent="." unique_id=374073348 node_paths=PackedStringArray("nav_region")]
+[node name="MaskedCharacterSpawner" type="MultiplayerSpawner" parent="." unique_id=374073348 node_paths=PackedStringArray("map", "task_manager")]
 unique_name_in_owner = true
 spawn_path = NodePath("../ySorted")
 script = ExtResource("15_41cje")
-nav_region = NodePath("../NavigationRegion2D")
+map = NodePath("../Map")
+task_manager = NodePath("../TaskManager")
 npc_scene = ExtResource("3_lnu2h")
 player_scene = ExtResource("9_0tnpc")
 skins_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("4_gee14"), ExtResource("3_u5sy4"), ExtResource("5_0tnpc")])
-masks_scenes = Array[PackedScene]([ExtResource("9_h7eg2")])
+masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=142268143]
+[node name="Map" parent="." unique_id=595974935 instance=ExtResource("17_hnppa")]
 unique_name_in_owner = true
-navigation_polygon = SubResource("NavigationPolygon_lnu2h")
-
-[node name="Background" parent="." unique_id=1410678110 instance=ExtResource("17_hnppa")]
 
 [node name="ySorted" type="Node2D" parent="." unique_id=1020136872]
 unique_name_in_owner = true
@@ -126,4 +120,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Spies Remaining: 1"
 
+[connection signal="all_tasks_finished" from="TaskManager" to="." method="_on_task_manager_all_tasks_finished"]
 [connection signal="timeout" from="RoundStartDelay" to="." method="_on_round_start_delay_timeout"]

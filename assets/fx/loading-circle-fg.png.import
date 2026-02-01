@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceqg76emov4xg"
-path="res://.godot/imported/Interiors_free_32x32.png-e190f33b791ff5f8d342abdeb85365ac.ctex"
+uid="uid://dimkksriuq2yv"
+path="res://.godot/imported/loading-circle-fg.png-fb4a34378d8dd303bfecb9d82d8244ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mansion/Interiors_free_32x32.png"
-dest_files=["res://.godot/imported/Interiors_free_32x32.png-e190f33b791ff5f8d342abdeb85365ac.ctex"]
+source_file="res://assets/fx/loading-circle-fg.png"
+dest_files=["res://.godot/imported/loading-circle-fg.png-fb4a34378d8dd303bfecb9d82d8244ce.ctex"]
 
 [params]
 

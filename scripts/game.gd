@@ -5,20 +5,16 @@ signal round_start()
 signal round_end(detective_won: bool)
 
 @onready var y_sorted : Node2D = $%ySorted
-@onready var nav_region : NavigationRegion2D = $%NavigationRegion2D
-
-@export var player_scene : PackedScene
-@export var player_sprite_frames : Array[SpriteFrames]
-@export var masks_scenes : Array[PackedScene]
+@onready var nav_region : NavigationRegion2D = ($%Map as Map).nav_region
 
 @onready var spotlight : PanelContainer = $%SpotlightPanel
 const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 
-@export var amount_of_npcs : int = 10
+@export var amount_of_npcs : int = 1
 @onready var masked_spawner : MaskedCharacterSpawner = $%MaskedCharacterSpawner
 
 @export var detective_amount_of_bullets : int = 4
-@export var killed_spies : int = 0
+var killed_spies : int = 0
 
 const  ROLE_DETECTIVE : String = "You are a DETECTIVE"
 const  ROLE_SPY : String = "You are a SPY"
@@ -35,8 +31,9 @@ func _ready():
 	NavigationServer2D.map_changed.connect(func(_map: RID): spawn_characters())
 	spotlight.visible = true
 	spotlight.material.set_shader_parameter("radius", INITIAL_SPOTLIGHT_RADIUS)
+	remaining_spies.text = REMAINING_SPIES % [Lobby.connected_players.size() - 1 - killed_spies]
 	_loaded_scene.rpc_id(1) # Tell server (and ourselfs) that we loaded the scene
-
+	
 @rpc("call_local", "any_peer")
 func _loaded_scene():
 	players_that_loaded_scene += 1
@@ -91,7 +88,9 @@ func spawn_characters() -> void:
 	for i in range(amount_of_npcs):
 		masked_spawner.spawn({"spawn_point": _get_random_spawn(),\
 							  "skin_index":  _get_random_skin_index(),\
-							  "mask_index":  _get_random_mask_index()})
+							  "mask_index":  _get_random_mask_index(),\
+							  "npc_id": i,\
+							  "important": true})
 	var random_detective : int = randi_range(0, Lobby.connected_players.size() - 1)
 	var detective_id : int = Lobby.connected_players.keys()[random_detective]
 	for id in Lobby.connected_players:
@@ -109,3 +108,9 @@ func set_player_role(role: PlayerControl.PLAYER_ROLE) -> void:
 	player_role.emit(role)
 	role_label.text = ROLE_DETECTIVE if role == PlayerControl.PLAYER_ROLE.DETECTIVE\
 							else ROLE_SPY
+
+func _on_task_manager_all_tasks_finished() -> void:
+	if not multiplayer.is_server():
+		return
+	print("Spies won!")
+	round_end.emit(false)
