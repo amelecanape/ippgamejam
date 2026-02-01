@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://ckn8trj0hewsk" path="res://scenes/mask/troll_mask.tscn" id="13_o6psv"]
 [ext_resource type="PackedScene" uid="uid://cl2e22x15c8lq" path="res://scenes/mask/wolf_mask.tscn" id="14_p7exr"]
 [ext_resource type="Script" uid="uid://okem3v4rp2nv" path="res://scripts/masked_character_spawner.gd" id="15_41cje"]
+[ext_resource type="Script" uid="uid://cah2dafpl1m6n" path="res://scripts/TaskManager.gd" id="15_h7eg2"]
+[ext_resource type="PackedScene" uid="uid://byb1qo8kxt12x" path="res://scenes/tasks/npc_bugging_task.tscn" id="16_h7eg2"]
 [ext_resource type="PackedScene" uid="uid://bej1u150n5oyp" path="res://scenes/map.tscn" id="17_hnppa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g6yuj"]
@@ -31,16 +33,22 @@ player_scene = ExtResource("9_0tnpc")
 player_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("5_0tnpc"), ExtResource("4_gee14"), ExtResource("3_u5sy4")])
 masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 
+[node name="TaskManager" type="Node" parent="." unique_id=1945994480]
+script = ExtResource("15_h7eg2")
+npc_bugging_task_scene = ExtResource("16_h7eg2")
+metadata/_custom_type_script = "uid://cah2dafpl1m6n"
+
 [node name="RoundStartDelay" type="Timer" parent="." unique_id=1114077709]
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="MaskedCharacterSpawner" type="MultiplayerSpawner" parent="." unique_id=374073348 node_paths=PackedStringArray("map")]
+[node name="MaskedCharacterSpawner" type="MultiplayerSpawner" parent="." unique_id=374073348 node_paths=PackedStringArray("map", "task_manager")]
 unique_name_in_owner = true
 spawn_path = NodePath("../ySorted")
 script = ExtResource("15_41cje")
 map = NodePath("../Map")
+task_manager = NodePath("../TaskManager")
 npc_scene = ExtResource("3_lnu2h")
 player_scene = ExtResource("9_0tnpc")
 skins_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("4_gee14"), ExtResource("3_u5sy4"), ExtResource("5_0tnpc")])
@@ -114,4 +122,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Spies Remaining: 1"
 
+[connection signal="all_tasks_finished" from="TaskManager" to="." method="_on_task_manager_all_tasks_finished"]
 [connection signal="timeout" from="RoundStartDelay" to="." method="_on_round_start_delay_timeout"]

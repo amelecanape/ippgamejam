@@ -1,6 +1,7 @@
 class_name MaskedCharacterSpawner extends MultiplayerSpawner
 
 @export var map : Map
+@export var task_manager : TaskManager
 
 @export var npc_scene : PackedScene
 @export var player_scene : PackedScene
@@ -25,8 +26,11 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 	else:
 		var npc : NPCControl = npc_scene.instantiate() as NPCControl
 		npc.navigation_region = map.nav_region
+		npc.npc_id = data["npc_id"]
 		masked = npc
 		masked.died.connect((get_parent() as Round)._on_npc_died)
+		if data["important"]:
+			task_manager.add_important_npc(npc)
 	return _configure_masked(data, masked)
 	
 func _configure_masked(data, masked : MaskedCharacter) -> MaskedCharacter:
