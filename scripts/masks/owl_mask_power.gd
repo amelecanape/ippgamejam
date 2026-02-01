@@ -10,14 +10,14 @@ func _process(delta: float) -> void:
 	var player: PlayerControl = mask.masked_character as PlayerControl
 	if player:
 		player.camera.zoom = Vector2.ONE * regular_view 
-	if view_increase_duration > 0:
+	if view_increase_counter > 0:
 		if player:
 			player.camera.zoom = Vector2.ONE * increased_view
-		
-	view_increase_duration = view_increase_duration - delta \
-					 if view_increase_duration > 0 else  0.0
+	
+	view_increase_counter = view_increase_counter - delta \
+					 if view_increase_counter > 0 else  0.0
 
 
 
 func execute_ability() -> void:
-	view_increase_duration = view_increase_duration
+	view_increase_counter = view_increase_duration

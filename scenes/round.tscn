@@ -4,18 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://p4t01rmimlig" path="res://scenes/npc_character.tscn" id="3_lnu2h"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/skins/mob_boss.tres" id="3_u5sy4"]
 [ext_resource type="SpriteFrames" uid="uid://y08gke151q38" path="res://resources/sprite_frames/skins/blue_suit.tres" id="4_gee14"]
-[ext_resource type="PackedScene" uid="uid://cyna8h07wstaf" path="res://scenes/mask/fox_mask.tscn" id="4_lbhrr"]
 [ext_resource type="SpriteFrames" uid="uid://dlb6at1me6y6i" path="res://resources/sprite_frames/skins/red_dress.tres" id="5_0tnpc"]
 [ext_resource type="SpriteFrames" uid="uid://duvrnheasiag2" path="res://resources/sprite_frames/skins/black_suit.tres" id="6_vtaks"]
-[ext_resource type="PackedScene" uid="uid://c078x6obfe1uv" path="res://scenes/mask/cat_mask.tscn" id="7_hnppa"]
-[ext_resource type="PackedScene" uid="uid://csnd72up75dp3" path="res://scenes/mask/clown_mask.tscn" id="8_41cje"]
 [ext_resource type="PackedScene" uid="uid://fe04lx08pprm" path="res://scenes/player_character.tscn" id="9_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://vmw5c4y8my8f" path="res://scenes/mask/deer_mask.tscn" id="9_h7eg2"]
 [ext_resource type="PackedScene" uid="uid://dtr27uoj7x05g" path="res://scenes/mask/owl_mask.tscn" id="11_ejohc"]
 [ext_resource type="Shader" uid="uid://c2vdhk2roar45" path="res://resources/shaders/spotlight.gdshader" id="11_ojwvf"]
 [ext_resource type="PackedScene" uid="uid://hdrftrspe301" path="res://scenes/mask/rabbit_mask.tscn" id="12_64kk8"]
-[ext_resource type="PackedScene" uid="uid://ckn8trj0hewsk" path="res://scenes/mask/troll_mask.tscn" id="13_o6psv"]
-[ext_resource type="PackedScene" uid="uid://cl2e22x15c8lq" path="res://scenes/mask/wolf_mask.tscn" id="14_p7exr"]
 [ext_resource type="Script" uid="uid://okem3v4rp2nv" path="res://scripts/masked_character_spawner.gd" id="15_41cje"]
 [ext_resource type="Script" uid="uid://cah2dafpl1m6n" path="res://scripts/TaskManager.gd" id="15_h7eg2"]
 [ext_resource type="PackedScene" uid="uid://byb1qo8kxt12x" path="res://scenes/tasks/npc_bugging_task.tscn" id="16_h7eg2"]
@@ -50,7 +44,7 @@ task_manager = NodePath("../TaskManager")
 npc_scene = ExtResource("3_lnu2h")
 player_scene = ExtResource("9_0tnpc")
 skins_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("4_gee14"), ExtResource("3_u5sy4"), ExtResource("5_0tnpc")])
-masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
+masks_scenes = Array[PackedScene]([ExtResource("11_ejohc"), ExtResource("12_64kk8")])
 
 [node name="Map" parent="." unique_id=595974935 instance=ExtResource("17_hnppa")]
 unique_name_in_owner = true

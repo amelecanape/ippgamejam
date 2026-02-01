@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scripts/masked_character.gd" id="1_ddrle"]
 [ext_resource type="Shader" uid="uid://cnax3ceg4jw3w" path="res://resources/shaders/outline.gdshader" id="2_83goj"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/skins/mob_boss.tres" id="2_ddrle"]
+[ext_resource type="SpriteFrames" uid="uid://dd7a8dpvbwerd" path="res://resources/sprite_frames/fx/dash.tres" id="4_83goj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rf373"]
 radius = 14.0
@@ -64,6 +65,14 @@ frame_progress = 0.71970975
 [node name="MaskSlot" type="Node2D" parent="Graphics" unique_id=453581118]
 unique_name_in_owner = true
 position = Vector2(2, -24)
+
+[node name="DashFx" type="AnimatedSprite2D" parent="Graphics" unique_id=890375973]
+unique_name_in_owner = true
+position = Vector2(-18, -18)
+sprite_frames = ExtResource("4_83goj")
+animation = &"dash"
+frame = 4
+frame_progress = 1.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1267493538]
 replication_config = SubResource("SceneReplicationConfig_ddrle")
