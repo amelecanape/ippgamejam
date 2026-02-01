@@ -1,5 +1,6 @@
 class_name Round extends Node2D
 
+signal player_role(role: PlayerControl.PLAYER_ROLE)
 signal round_start()
 signal round_end(detective_won: bool)
 
@@ -19,8 +20,6 @@ const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 @export var detective_amount_of_bullets : int = 4
 @export var killed_spies : int = 0
 
-@export var player_role : PlayerControl.PLAYER_ROLE
-
 const  ROLE_DETECTIVE : String = "You are a DETECTIVE"
 const  ROLE_SPY : String = "You are a SPY"
 const  REMAINING_SPIES : String = "%d remaining spies"
@@ -29,11 +28,25 @@ const  REMAINING_SPIES : String = "%d remaining spies"
 @onready var ability_cooldown : Label = $%AbilityCooldown
 @onready var remaining_spies : Label = $%RemainingSpies
 
+var players_that_loaded_scene: int = 0
+
 func _ready():
 	assert(nav_region, "Node needs to have a NavigationRegion2D!")
 	NavigationServer2D.map_changed.connect(func(_map: RID): spawn_characters())
 	spotlight.visible = true
 	spotlight.material.set_shader_parameter("radius", INITIAL_SPOTLIGHT_RADIUS)
+	_loaded_scene.rpc_id(1) # Tell server (and ourselfs) that we loaded the scene
+
+@rpc("call_local", "any_peer")
+func _loaded_scene():
+	players_that_loaded_scene += 1
+	if players_that_loaded_scene == Lobby.connected_players.size():
+		print("all players loaded")
+	$RoundStartDelay.start()
+	print("delay to start round")
+
+func _on_round_start_delay_timeout() -> void:
+	start_game.rpc()
 
 func _on_npc_died() -> void:
 	detective_amount_of_bullets -= 1
@@ -89,10 +102,9 @@ func spawn_characters() -> void:
 							  "player": id,\
 							  "role": role})
 		set_player_role.rpc_id(id, role)
-	start_game.rpc()
 	
 @rpc("call_local")
 func set_player_role(role: PlayerControl.PLAYER_ROLE) -> void:
-	player_role = role
+	player_role.emit(role)
 	role_label.text = ROLE_DETECTIVE if role == PlayerControl.PLAYER_ROLE.DETECTIVE\
 							else ROLE_SPY

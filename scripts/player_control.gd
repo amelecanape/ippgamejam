@@ -16,6 +16,9 @@ func _ready() -> void:
 func _enter_tree() -> void:
 	$MultiplayerSynchronizer.set_multiplayer_authority(player)
 	
+func _on_round_start() -> void:
+	lock_movement = false
+
 func _process(_delta: float) -> void:
 	super._process(_delta)
 	if lock_movement or player != multiplayer.get_unique_id():

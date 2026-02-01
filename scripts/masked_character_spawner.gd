@@ -17,8 +17,11 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 		var player : PlayerControl = player_scene.instantiate() as PlayerControl
 		player.player = data["player"]
 		player.role = data["role"]
+		player.lock_movement = true
+		var round: Round = get_parent() as Round
+		round.round_start.connect(player._on_round_start)
 		masked = player
-		masked.died.connect((get_parent() as Round)._on_player_died)
+		masked.died.connect(round._on_player_died)
 	else:
 		var npc : NPCControl = npc_scene.instantiate() as NPCControl
 		npc.navigation_region = nav_region

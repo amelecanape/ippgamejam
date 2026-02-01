@@ -40,6 +40,11 @@ player_scene = ExtResource("9_0tnpc")
 player_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("5_0tnpc"), ExtResource("4_gee14"), ExtResource("3_u5sy4")])
 masks_scenes = Array[PackedScene]([ExtResource("7_hnppa"), ExtResource("8_41cje"), ExtResource("9_h7eg2"), ExtResource("4_lbhrr"), ExtResource("11_ejohc"), ExtResource("12_64kk8"), ExtResource("13_o6psv"), ExtResource("14_p7exr")])
 
+[node name="RoundStartDelay" type="Timer" parent="." unique_id=1114077709]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
 [node name="MaskedCharacterSpawner" type="MultiplayerSpawner" parent="." unique_id=374073348 node_paths=PackedStringArray("nav_region")]
 unique_name_in_owner = true
 spawn_path = NodePath("../ySorted")
@@ -120,3 +125,5 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Spies Remaining: 1"
+
+[connection signal="timeout" from="RoundStartDelay" to="." method="_on_round_start_delay_timeout"]
