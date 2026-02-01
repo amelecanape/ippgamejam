@@ -15,10 +15,11 @@ radius = 104.0
 [node name="DeerMask" unique_id=1533623259 instance=ExtResource("1_swslt")]
 
 [node name="Sprite" parent="." index="0" unique_id=1359893921]
-position = Vector2(-1, -1)
+position = Vector2(-1, -3)
 texture = SubResource("AtlasTexture_g24lm")
 
 [node name="WavesFx" type="AnimatedSprite2D" parent="." index="1" unique_id=257029443]
+position = Vector2(0, -2)
 sprite_frames = ExtResource("3_m6ysm")
 animation = &"waves"
 
@@ -29,6 +30,7 @@ jammed_area_collider = NodePath("../JammedArea/CollisionShape2D")
 metadata/_custom_type_script = "uid://c32gdnx4n5x40"
 
 [node name="JammedArea" type="Area2D" parent="." index="3" unique_id=392453426]
+visible = false
 collision_layer = 8
 collision_mask = 0
 

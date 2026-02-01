@@ -11,7 +11,7 @@ region = Rect2(99, 6, 12, 9)
 [node name="CatMask" unique_id=1533623259 instance=ExtResource("1_id37v")]
 
 [node name="Sprite" parent="." index="0" unique_id=1359893921]
-position = Vector2(1, 2)
+position = Vector2(1, 0)
 texture = SubResource("AtlasTexture_qua2o")
 
 [node name="FoxMask" type="Node" parent="." index="1" unique_id=705772458]
