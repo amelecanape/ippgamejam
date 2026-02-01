@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://byb1qo8kxt12x"]
 
 [ext_resource type="Script" uid="uid://0wiaxfbd0usk" path="res://scripts/tasks/npc_bugging_task.gd" id="1_o1a1c"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://assets/icon.svg" id="2_7jubi"]
+[ext_resource type="Texture2D" uid="uid://udc45jkc8kn4" path="res://assets/fx/loading-circle-bg.png" id="2_8pbd8"]
+[ext_resource type="Texture2D" uid="uid://dimkksriuq2yv" path="res://assets/fx/loading-circle-fg.png" id="3_2jtmh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1a1c"]
-radius = 15.0
-height = 56.0
+height = 64.0
 
 [node name="NPCBuggingTask" type="Node2D" unique_id=574432315]
 script = ExtResource("1_o1a1c")
+bugging_increase_rate = 5.0
+bugging_decline_rate = 2.5
 metadata/_custom_type_script = "uid://0wiaxfbd0usk"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=252215497]
@@ -22,16 +24,21 @@ shape = SubResource("CapsuleShape2D_o1a1c")
 [node name="Node2D" type="Node2D" parent="." unique_id=1619038607]
 z_index = -1
 position = Vector2(-0.5, 0.4999981)
-scale = Vector2(0.4453125, 0.24218749)
 
 [node name="Progress" type="TextureProgressBar" parent="Node2D" unique_id=1214011195]
 unique_name_in_owner = true
-offset_left = -64.00001
-offset_top = -63.999996
-offset_right = 63.999992
-offset_bottom = 64.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.5
+offset_top = -6.499998
+offset_right = 32.5
+offset_bottom = 9.500002
+grow_horizontal = 2
+grow_vertical = 2
 fill_mode = 4
-texture_progress = ExtResource("2_7jubi")
+texture_under = ExtResource("2_8pbd8")
+texture_progress = ExtResource("3_2jtmh")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
