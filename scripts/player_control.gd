@@ -1,5 +1,7 @@
 class_name PlayerControl extends MaskedCharacter
 
+var round : Round
+
 @export var lock_movement : bool = false
 
 @export var player : int
@@ -13,6 +15,10 @@ enum PLAYER_ROLE {SPY, DETECTIVE}
 func _ready() -> void:
 	super._ready()
 	$Camera2D.enabled = player == multiplayer.get_unique_id()
+	if role == PLAYER_ROLE.DETECTIVE:
+		set_outline(Color.SKY_BLUE)
+	elif round.player_role == PLAYER_ROLE.SPY:
+		set_outline(Color.ORANGE)
 	
 func _enter_tree() -> void:
 	$MultiplayerSynchronizer.set_multiplayer_authority(player)
@@ -67,3 +73,11 @@ func _on_area_collision_area_exited(area: Area2D) -> void:
 	if mask == area.get_parent() or player == multiplayer.get_unique_id():
 		return
 	print("stopped being jammed!")
+	
+func _on_mouse_entered() -> void:
+	if player != multiplayer.get_unique_id():
+		set_outline(Color.WHITE)
+
+func _on_mouse_exited() -> void:
+	if player != multiplayer.get_unique_id():
+		set_outline(Color.TRANSPARENT)

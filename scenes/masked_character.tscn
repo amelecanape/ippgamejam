@@ -1,13 +1,24 @@
 [gd_scene format=3 uid="uid://t8mmamu4wuxp"]
 
 [ext_resource type="Script" uid="uid://d0hr50morjdq" path="res://scripts/masked_character.gd" id="1_ddrle"]
+[ext_resource type="Shader" uid="uid://cnax3ceg4jw3w" path="res://resources/shaders/outline.gdshader" id="2_83goj"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/skins/mob_boss.tres" id="2_ddrle"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rf373"]
-height = 28.0
+radius = 14.0
+height = 46.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf373"]
-size = Vector2(12, 6)
+size = Vector2(28, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddrle"]
+resource_local_to_scene = true
+shader = ExtResource("2_83goj")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0000000475
+shader_parameter/pattern = 0
+shader_parameter/inside = true
+shader_parameter/add_margins = false
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ddrle"]
 properties/0/path = NodePath(".:mov_input")
@@ -28,23 +39,27 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollision" unique_id=414098404]
-position = Vector2(1, -12)
+position = Vector2(1, -20)
 shape = SubResource("CapsuleShape2D_rf373")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843683943]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_rf373")
 
 [node name="Graphics" type="Node2D" parent="." unique_id=923991376]
 unique_name_in_owner = true
+scale = Vector2(1.5, 1.5)
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="Graphics" unique_id=1673587675]
 unique_name_in_owner = true
 y_sort_enabled = true
 texture_filter = 1
+material = SubResource("ShaderMaterial_ddrle")
 position = Vector2(0, -14)
 sprite_frames = ExtResource("2_ddrle")
-animation = &"idle"
-frame_progress = 0.29996884
+animation = &"walk"
+frame = 3
+frame_progress = 0.71970975
 
 [node name="MaskSlot" type="Node2D" parent="Graphics" unique_id=453581118]
 unique_name_in_owner = true
@@ -52,3 +67,6 @@ position = Vector2(2, -24)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1267493538]
 replication_config = SubResource("SceneReplicationConfig_ddrle")
+
+[connection signal="mouse_entered" from="AreaCollision" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="AreaCollision" to="." method="_on_mouse_exited"]

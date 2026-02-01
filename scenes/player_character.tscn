@@ -2,6 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://t8mmamu4wuxp" path="res://scenes/masked_character.tscn" id="1_56udc"]
 [ext_resource type="Script" uid="uid://k72ra4rqbjke" path="res://scripts/player_control.gd" id="2_6r27q"]
+[ext_resource type="Shader" uid="uid://cnax3ceg4jw3w" path="res://resources/shaders/outline.gdshader" id="3_kww55"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kww55"]
+resource_local_to_scene = true
+shader = ExtResource("3_kww55")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0000000475
+shader_parameter/pattern = 0
+shader_parameter/inside = true
+shader_parameter/add_margins = false
 
 [node name="PlayerCharacter" unique_id=296287983 instance=ExtResource("1_56udc")]
 script = ExtResource("2_6r27q")
@@ -12,7 +22,7 @@ shootable_mask = 4
 
 [node name="CharacterSprite" parent="Graphics" parent_id_path=PackedInt32Array(923991376) index="0" unique_id=1673587675]
 y_sort_enabled = false
-animation = &"walk"
+material = SubResource("ShaderMaterial_kww55")
 frame_progress = 0.0
 
 [node name="MultiplayerSynchronizer" parent="." index="3" unique_id=1267493538]

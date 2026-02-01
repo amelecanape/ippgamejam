@@ -14,15 +14,18 @@ var mask_base_position : Vector2
 @onready var character_sprite : AnimatedSprite2D = $%CharacterSprite
 
 @onready var graphics : Node2D = $%Graphics
+var graphics_scale_x : float
 
 var is_dead : bool
 
 func _ready() -> void:
+	set_outline(Color.TRANSPARENT)
 	if character_frames:
 		character_sprite.sprite_frames = character_frames
 	character_sprite.play("idle")
 	character_sprite.frame_changed.connect(_on_character_frame_changed)
 	is_dead = false
+	graphics_scale_x = graphics.scale.x
 	#assert(mask, "No mask child node in MaskedCharacter!")
 	#mask_sprite.texture = mask.mask_sprite
 	mask_base_position = mask_slot.position
@@ -41,6 +44,9 @@ func set_mask(new_mask: Mask) -> void:
 	mask.masked_character = self
 	$%MaskSlot.add_child(mask)
 	mask.position = Vector2.ZERO
+
+func set_outline(color : Color) -> void:
+	character_sprite.get_material().set_shader_parameter("color", color)
 	
 @rpc("any_peer", "call_local")
 func play_dash_fx() -> void:
@@ -48,7 +54,7 @@ func play_dash_fx() -> void:
 
 func _process(_delta: float) -> void:
 	if not is_zero_approx(mov_input.x):
-		graphics.scale.x = -1 if mov_input.x < 0 else 1
+		graphics.scale.x = -graphics_scale_x if mov_input.x < 0 else graphics_scale_x
 		
 	if not mov_input.is_zero_approx():
 		character_sprite.play("walk")
@@ -62,3 +68,9 @@ func _physics_process(_delta: float) -> void:
 	velocity = movement_speed * mov_input + impulse
 	impulse = Vector2.ZERO
 	move_and_slide()
+
+func _on_mouse_entered() -> void:
+	set_outline(Color.WHITE)
+
+func _on_mouse_exited() -> void:
+	set_outline(Color.TRANSPARENT)

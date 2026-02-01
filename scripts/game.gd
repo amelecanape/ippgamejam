@@ -1,6 +1,6 @@
 class_name Round extends Node2D
 
-signal player_role(role: PlayerControl.PLAYER_ROLE)
+signal new_player_role(role: PlayerControl.PLAYER_ROLE)
 signal round_start()
 signal round_end(detective_won: bool)
 
@@ -20,6 +20,7 @@ const  ROLE_DETECTIVE : String = "You are a DETECTIVE"
 const  ROLE_SPY : String = "You are a SPY"
 const  REMAINING_SPIES : String = "%d remaining spies"
 
+var player_role : PlayerControl.PLAYER_ROLE
 @onready var role_label : Label = $%RoleLabel
 @onready var ability_cooldown : Label = $%AbilityCooldown
 @onready var remaining_spies : Label = $%RemainingSpies
@@ -105,7 +106,8 @@ func spawn_characters() -> void:
 	
 @rpc("call_local")
 func set_player_role(role: PlayerControl.PLAYER_ROLE) -> void:
-	player_role.emit(role)
+	new_player_role.emit(role)
+	player_role = role
 	role_label.text = ROLE_DETECTIVE if role == PlayerControl.PLAYER_ROLE.DETECTIVE\
 							else ROLE_SPY
 

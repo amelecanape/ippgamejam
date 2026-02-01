@@ -20,6 +20,7 @@ func _spawn_masked(data : Dictionary) -> MaskedCharacter:
 		player.role = data["role"]
 		player.lock_movement = true
 		var round: Round = get_parent() as Round
+		player.round = round
 		round.round_start.connect(player._on_round_start)
 		masked = player
 		masked.died.connect(round._on_player_died)
