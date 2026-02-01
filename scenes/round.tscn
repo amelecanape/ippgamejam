@@ -27,6 +27,7 @@ shader_parameter/radius = 0.10000000475
 script = ExtResource("1_vtaks")
 amount_of_npcs = 50
 important_npcs = 0
+amount_of_items = 3
 
 [node name="TaskManager" type="Node" parent="." unique_id=1945994480]
 script = ExtResource("15_h7eg2")
