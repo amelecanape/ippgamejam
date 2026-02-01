@@ -3,17 +3,35 @@ class_name TaskManager extends Node
 signal all_tasks_finished()
 signal task_finished(amount: int)
 
-@export var amount_of_tasks : int = 0
-
-### Bugging NPC task
-@export var bugging_npc_tasks : Dictionary[int, NPCBuggingTask] = {}
-@export var npc_bugging_task_scene: PackedScene
+var amount_of_tasks : int = 0
 
 func _on_task_finished() -> void:
+	print(amount_of_tasks)
 	amount_of_tasks -= 1
 	task_finished.emit(amount_of_tasks)
 	if amount_of_tasks <= 0:
 		all_tasks_finished.emit()
+
+### Move item task
+@export var moving_item_tasks : Dictionary[int, MoveItem] = {}
+
+func add_move_item(item: MoveItem) -> void:
+	amount_of_tasks += 1
+	item.finished_item_taken.connect(_on_finished_taking_item)
+	moving_item_tasks[item.item_id] = item
+
+func _on_finished_taking_item(item: MoveItem):
+	_finished_taking_item.rpc_id(1, item.item_id)
+
+@rpc("call_local", "any_peer")
+func _finished_taking_item(item_id: int) -> void:
+	moving_item_tasks[item_id].queue_free()
+	moving_item_tasks.erase(item_id)
+	_on_task_finished()
+
+### Bugging NPC task
+@export var bugging_npc_tasks : Dictionary[int, NPCBuggingTask] = {}
+@export var npc_bugging_task_scene: PackedScene
 
 func add_important_npc(npc: NPCControl) -> void:
 	amount_of_tasks += 1

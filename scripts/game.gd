@@ -14,6 +14,9 @@ const INITIAL_SPOTLIGHT_RADIUS : float = 0.15
 @export var important_npcs : int = 5
 @onready var masked_spawner : MaskedCharacterSpawner = $%MaskedCharacterSpawner
 
+@export var amount_of_items : int = 1
+@onready var move_item_spawner : MoveItemsSpawner = $%MoveItemsSpawner
+
 @export var detective_amount_of_bullets : int = 4
 var killed_spies : int = 0
 
@@ -105,6 +108,9 @@ func spawn_characters() -> void:
 							  "npc_id": i,\
 							  "important": i < important_npcs})
 	
+	for i in range(amount_of_items):
+		move_item_spawner.spawn({"spawn_point": _get_random_spawn(), "item_id": i})
+
 @rpc("call_local")
 func set_player_role(role: PlayerControl.PLAYER_ROLE) -> void:
 	new_player_role.emit(role)

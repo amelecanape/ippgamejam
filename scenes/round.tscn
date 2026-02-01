@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://p4t01rmimlig" path="res://scenes/npc_character.tscn" id="3_lnu2h"]
 [ext_resource type="SpriteFrames" uid="uid://ch2waandkedv4" path="res://resources/sprite_frames/skins/mob_boss.tres" id="3_u5sy4"]
 [ext_resource type="SpriteFrames" uid="uid://y08gke151q38" path="res://resources/sprite_frames/skins/blue_suit.tres" id="4_gee14"]
+[ext_resource type="Script" uid="uid://mesq63ilmarw" path="res://scripts/move_items_spawner.gd" id="4_i86cr"]
 [ext_resource type="SpriteFrames" uid="uid://dlb6at1me6y6i" path="res://resources/sprite_frames/skins/red_dress.tres" id="5_0tnpc"]
 [ext_resource type="SpriteFrames" uid="uid://duvrnheasiag2" path="res://resources/sprite_frames/skins/black_suit.tres" id="6_vtaks"]
 [ext_resource type="PackedScene" uid="uid://fe04lx08pprm" path="res://scenes/player_character.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dtr27uoj7x05g" path="res://scenes/mask/owl_mask.tscn" id="11_ejohc"]
 [ext_resource type="Shader" uid="uid://c2vdhk2roar45" path="res://resources/shaders/spotlight.gdshader" id="11_ojwvf"]
 [ext_resource type="PackedScene" uid="uid://hdrftrspe301" path="res://scenes/mask/rabbit_mask.tscn" id="12_64kk8"]
+[ext_resource type="PackedScene" uid="uid://btkafq75c864s" path="res://scenes/tasks/move_item.tscn" id="14_dfwyv"]
 [ext_resource type="Script" uid="uid://okem3v4rp2nv" path="res://scripts/masked_character_spawner.gd" id="15_41cje"]
 [ext_resource type="Script" uid="uid://cah2dafpl1m6n" path="res://scripts/TaskManager.gd" id="15_h7eg2"]
 [ext_resource type="PackedScene" uid="uid://byb1qo8kxt12x" path="res://scenes/tasks/npc_bugging_task.tscn" id="16_h7eg2"]
@@ -24,6 +26,7 @@ shader_parameter/radius = 0.10000000475
 [node name="Round" type="Node2D" unique_id=445564108]
 script = ExtResource("1_vtaks")
 amount_of_npcs = 50
+important_npcs = 0
 
 [node name="TaskManager" type="Node" parent="." unique_id=1945994480]
 script = ExtResource("15_h7eg2")
@@ -45,6 +48,14 @@ npc_scene = ExtResource("3_lnu2h")
 player_scene = ExtResource("9_0tnpc")
 skins_sprite_frames = Array[SpriteFrames]([ExtResource("6_vtaks"), ExtResource("4_gee14"), ExtResource("3_u5sy4"), ExtResource("5_0tnpc")])
 masks_scenes = Array[PackedScene]([ExtResource("11_ejohc"), ExtResource("12_64kk8")])
+
+[node name="MoveItemsSpawner" type="MultiplayerSpawner" parent="." unique_id=1954983603 node_paths=PackedStringArray("task_manager")]
+unique_name_in_owner = true
+spawn_path = NodePath("../ySorted")
+script = ExtResource("4_i86cr")
+task_manager = NodePath("../TaskManager")
+move_item_scene = ExtResource("14_dfwyv")
+metadata/_custom_type_script = "uid://mesq63ilmarw"
 
 [node name="Map" parent="." unique_id=595974935 instance=ExtResource("17_hnppa")]
 unique_name_in_owner = true
