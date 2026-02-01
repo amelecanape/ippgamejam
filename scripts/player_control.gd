@@ -42,7 +42,8 @@ func _shoot(pos: Vector2) -> void:
 	for r in result:
 		var area : Area2D = r["collider"] as Area2D
 		var masked : MaskedCharacter = area.get_parent()
-		masked.die.rpc()
+		if masked != self:
+			masked.die.rpc()
 
 func _physics_process(_delta: float) -> void:
 	mov_input = Input.get_vector("character_move_neg_x","character_move_pos_x",\
